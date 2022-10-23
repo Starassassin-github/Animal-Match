@@ -22,7 +22,7 @@ export const validation = () => (
         // .min(50,'That is it ? ...write some more'),
         description:Yup.string()
         .required('Sorry the description is required')
-        .max(500,'Sorry its 500 max'),
+        .max(200,'Sorry its 200 max'),
         rich_description:Yup.string()
         .max(500,'Sorry its 500 max'),
         type:Yup.string()

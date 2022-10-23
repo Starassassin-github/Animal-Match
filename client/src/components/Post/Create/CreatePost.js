@@ -117,7 +117,7 @@ export default function CreatePost() {
                 variant="outlined"
                 {...formik.getFieldProps("rich_description")}
                 {...errorHelper(formik, "rich_description")}
-                helperText="*Optional if you need explain description more"
+                helperText="*Optional if you need explain description more max 500"
                 multiline
                 rows={4}
               />
