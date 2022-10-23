@@ -15,7 +15,7 @@ export default function Hamburger() {
   
 
   return (
-    <div className="flex text-center  bg-[#EBC8F1] h-[100px]  sm:h-[140px] ">
+    <div className="flex text-center justify-between bg-[#EBC8F1] h-[100px]  sm:h-[140px] ">
       <LogoAndName />
       <nav>
         <section className="MOBILE-MENU flex sm:hidden ">
@@ -95,7 +95,7 @@ export default function Hamburger() {
           </div>
         </section>
 
-        <ul className="DESKTOP-MENU hidden space-x-2 sm:flex border-l-[10px] ml-[300px] mt-[20px] border-[#EBC8F1] ">
+        <ul className="DESKTOP-MENU hidden space-x-2 sm:flex border-l-[10px]  mt-[20px] border-[#EBC8F1] ">
           <li className="bg-[#FEE9FF] hover:bg-[#FEE39F] mt-[27px] py-3 px-4 rounded-full border-[1px] border-[#FF00C5] shadow shadow-blue-500/70">
             <a href="/Profile">Profile</a>
           </li>
