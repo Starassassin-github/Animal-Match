@@ -17,9 +17,6 @@ export const validation = () => (
         .required('Sorry the name is required'),
         age:Yup.string()
         .required('Sorry the age is required'),
-        // content:Yup.string()
-        // .required('Sorry the content is required')
-        // .min(50,'That is it ? ...write some more'),
         description:Yup.string()
         .required('Sorry the description is required')
         .max(500,'Sorry its 500 max'),
@@ -30,8 +27,8 @@ export const validation = () => (
         location:Yup.string()
         .required('Sorry the location is required')
         .max(150,'Sorry its 150 max'),
-        image:Yup.array()
-        .required('Must have image')
-        .min(1,'Minimum is 1'),
+        // image:Yup.array()
+        // .required('Must have image')
+        // .min(1,'Minimum is 1'),
     })
 )
