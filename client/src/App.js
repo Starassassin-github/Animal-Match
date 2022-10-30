@@ -1,4 +1,7 @@
 // import
+import React from "react";
+
+// components
 import Hamburger from './components/hamburger/hamburger';
 import CreatePost from './components/Post/Create/CreatePost';
 
@@ -16,7 +19,9 @@ function App() {
           <h1 >&nbsp;</h1>
         </div>
       </div>
-      <div><CreatePost /></div>
+      <div>
+        <CreatePost />
+      </div>
     </div>
   );
 }
