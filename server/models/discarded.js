@@ -5,7 +5,7 @@ require('dotenv').config();
 const discardedSchema = mongoose.Schema({
     post: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'post',
+        ref: 'posts',
     }],
     date: {
         type: Date,
@@ -13,5 +13,5 @@ const discardedSchema = mongoose.Schema({
     }
 });
 
-const Discarded = mongoose.model('post', discardedSchema);
+const Discarded = mongoose.model('discardeds', discardedSchema);
 module.exports = { Discarded };

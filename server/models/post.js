@@ -3,26 +3,29 @@ require('dotenv').config();
 
 
 const postSchema = mongoose.Schema({
-    image: {
+    images: [{
         type:String,
+    }],
+    age: {
+        type: String,
     },
     description: {
         type:String,
-        required:[true,'You need some description']
+        required:[true,'You need some description'],
+        maxLength:200,
     },
     rich_description: {
         type:String,
-        required:[true,'Please add an excerpt'],
         maxLength:500,
     },
     user_who_post: {
-        type:String,
-        required:true
-    },
-    user_favorite: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user_favorite',
+        ref: 'user_favorites',
     },
+    user_favorite: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user_favorites',
+    }],
     animal_type: {
         type: String,
     },
@@ -40,5 +43,5 @@ const postSchema = mongoose.Schema({
     }
 });
 
-const Post = mongoose.model('post', postSchema);
+const Post = mongoose.model('posts', postSchema);
 module.exports = { Post };

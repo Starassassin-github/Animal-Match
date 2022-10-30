@@ -4,6 +4,7 @@ import React from "react";
 // components
 import Hamburger from './components/hamburger/hamburger';
 import CreatePost from './components/Post/Create/CreatePost';
+import ReadPost from "./components/Post/Read/ReadPost";
 
 
 
@@ -20,7 +21,8 @@ function App() {
         </div>
       </div>
       <div>
-        <CreatePost />
+        {/* <CreatePost /> */}
+        <ReadPost />
       </div>
     </div>
   );

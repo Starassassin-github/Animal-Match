@@ -5,7 +5,7 @@ require('dotenv').config();
 const user_favoriteSchema = mongoose.Schema({
     user_who_favorite: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
+        ref: 'users',
     }],
     date:{
         type: Date,
@@ -13,5 +13,5 @@ const user_favoriteSchema = mongoose.Schema({
     }
 });
 
-const User_Favorite = mongoose.model('post', user_favoriteSchema);
+const User_Favorite = mongoose.model('user_favorites', user_favoriteSchema);
 module.exports = { User_Favorite };

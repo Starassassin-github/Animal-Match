@@ -5,7 +5,7 @@ require('dotenv').config();
 const favoriteSchema = mongoose.Schema({
     post: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'post',
+        ref: 'posts',
     },
     status: {
         type: String,
@@ -16,5 +16,5 @@ const favoriteSchema = mongoose.Schema({
     }
 });
 
-const Favorite = mongoose.model('post', favoriteSchema);
+const Favorite = mongoose.model('favorites', favoriteSchema);
 module.exports = { Favorite };

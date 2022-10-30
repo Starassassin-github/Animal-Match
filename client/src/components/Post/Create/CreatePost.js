@@ -1,5 +1,4 @@
 // import
-
 import { useState, useRef, useEffect } from "react";
 import { useFormik, FieldArray, FormikProvider } from "formik";
 
@@ -7,29 +6,14 @@ import { useFormik, FieldArray, FormikProvider } from "formik";
 import { validation, formValues } from './validationSchema';
 import { errorHelper, Loader } from '../../../utils/tools';
 
-// image
-import ImageTestPost from '../../../images/ImageTestPost.jpg';
-import LikePostButton from '../../../images/LikePostButton.png';
-import DislikeButton from '../../../images/DislikeButton.png';
-
 // MUI
-import { alpha, styled } from '@mui/material/styles';
+import {  styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
-import Chip from '@mui/material/Chip'
-import Paper from '@mui/material/Paper'
-import InputBase from '@mui/material/InputBase'
-import IconButton from '@mui/material/IconButton'
 import Select from '@mui/material/Select'
-import SelectUnstyled from '@mui/base/SelectUnstyled';
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
-
 import InputLabel from '@mui/material/InputLabel';
-import AddIcon from '@mui/icons-material/Add';
-import { visuallyHidden } from '@mui/utils';
-
 
 
 const CssTextField = styled(TextField)({
@@ -73,7 +57,7 @@ export default function CreatePost() {
             <div className="flex flex-nowrap text-center bg-[#EBC8F1] ">
                 <div className="h-screen w-screen bg-[#EBC8F1]">
                     <h2>Create Post</h2>
-                    <form className="mt-[3px]" onSubmit={formik.handleSubmit}>
+                    <form className="mt-[3px] bg-[#EBC8F1]" onSubmit={formik.handleSubmit}>
 
                         <CssTextField
                             type="text"
@@ -114,6 +98,7 @@ export default function CreatePost() {
                                 variant="outlined"
                                 {...formik.getFieldProps("description")}
                                 {...errorHelper(formik, "description")}
+                                helperText="*You need explain description more max 200"
                                 multiline
                                 rows={2}
                             />
@@ -158,6 +143,7 @@ export default function CreatePost() {
 
                         <div className="mt-3">
                             <CssTextField
+                                className="border-none"
                                 type="text"
                                 inputProps={{ style: { color: "blue" } }}
                                 style={{ width: "40%", backgroundColor: "#f2abed" }}
@@ -166,22 +152,23 @@ export default function CreatePost() {
                                 variant="outlined"
                                 multiline
                                 rows={2}
+                                helperText="*You need explain location more max 150"
                                 {...formik.getFieldProps("location")}
                                 {...errorHelper(formik, "location")}
                             />
                         </div>
 
-                        <div>
+                        <div className="mt-5">
                             <div className="flex flex-row flex-wrap justify-around grid-cols-3">
                                 {
                                     Array.from(images).map(item => {
                                         return (
-                                            <span>
+                                            <div>
                                                 <img
                                                     key={item + Date.now()}
-                                                    className="p-[10px] w-[150px] h-fit"
+                                                    className="p-[10px] w-[300px] h-fit sm:[300px]"
                                                     src={item ? URL.createObjectURL(item) : null} />
-                                            </span>
+                                            </div>
                                         )
                                     })
                                 }
@@ -189,6 +176,14 @@ export default function CreatePost() {
 
                             <div>
                                 <input
+                                    size="60"
+                                    // className="border-4 border-solid bg-gray-50 rounded-lg border-purple-600 overflow-hidden cursor-pointer text-fuchsia-500 inline-block dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                    className="text-sm text-grey-500
+                                    file:mr-5 file:py-3 file:px-10
+                                    file:rounded-full file:border-0
+                                    file:text-md file:font-semibold  file:text-white
+                                    file:bg-gradient-to-r file:from-blue-600 file:to-amber-600
+                                    hover:file:cursor-pointer hover:file:opacity-80"
                                     onChange={(e) => {
                                         setImages(e.target.files)
                                     }}
@@ -200,13 +195,15 @@ export default function CreatePost() {
 
                         </div>
 
-                        <Button
-                            variant='contained'
-                            color="primary"
-                            type="submit"
-                        >
-                            Add Post
-                        </Button>
+                        <div className="mt-8">
+                            <button
+                                className="transition ease-in-out delay-150 bg-pink-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300  text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                                variant='contained'
+                                type="submit"
+                            >
+                                Add Post
+                            </button>
+                        </div>
 
                     </form>
                 </div>

@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema({
             }
         }
     },
-    passwordHash: {
+    password: {
         type:String,
         required:true,
         trim:true,
@@ -33,26 +33,26 @@ const userSchema = mongoose.Schema({
         trim:true
     },
     phone: {
-        type:Number,
+        type:String,
     },
     image: {
         type:String
     },
     post: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'post',
+        ref: 'posts',
     }],
     discarded: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'discarded'
+        ref: 'discardeds'
     },
     favorite: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'favorite'
+        ref: 'favorites'
     }],
     message: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'message'
+        ref: 'messages'
     }],
     date: {
         type: Date,
@@ -60,5 +60,5 @@ const userSchema = mongoose.Schema({
     }
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('users', userSchema);
 module.exports = { User };
