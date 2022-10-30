@@ -1,13 +1,7 @@
 // import
 
-<<<<<<< Updated upstream
-import { useState, useRef } from 'react';
-import { useFormik, FieldArray, FormikProvider } from 'formik';
-
-=======
 import { useState, useRef, useEffect } from "react";
 import { useFormik, FieldArray, FormikProvider } from "formik";
->>>>>>> Stashed changes
 
 // helper
 import { validation, formValues } from './validationSchema';
@@ -39,23 +33,6 @@ import { visuallyHidden } from '@mui/utils';
 
 
 const CssTextField = styled(TextField)({
-<<<<<<< Updated upstream
-    '& label.Mui-focused': {
-        color: 'purple',
-    },
-    '& .MuiInput-underline:after': {
-        borderBottomColor: 'green',
-    },
-    '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-            borderColor: '#FF31E9',
-        },
-        '&:hover fieldset': {
-            borderColor: 'yellow',
-        },
-        '&.Mui-focused fieldset': {
-            borderColor: 'purple',
-=======
     "& label.Mui-focused": {
         color: "purple",
     },
@@ -71,137 +48,29 @@ const CssTextField = styled(TextField)({
         },
         "&.Mui-focused fieldset": {
             borderColor: "purple",
->>>>>>> Stashed changes
         },
     },
 });
 
 export default function CreatePost() {
 
-<<<<<<< Updated upstream
-=======
     const [images, setImages] = useState([]);
     const [imageURLs, setImageURLs] = useState([]);
 
 
->>>>>>> Stashed changes
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: formValues,
         validationSchema: validation,
         onSubmit: (values) => {
-<<<<<<< Updated upstream
-            console.log(values)
-        }
-    })
-=======
             console.log(values);
             console.log(images);
         },
     });
->>>>>>> Stashed changes
 
     return (
         <div>
             <div className="flex flex-nowrap text-center bg-[#EBC8F1] ">
-<<<<<<< Updated upstream
-                    <div className='h-screen w-screen bg-[#EBC8F1]'>
-                        <h2>Create Post</h2>
-                        <form className='mt-[3px]' onSubmit={formik.handleSubmit}>
-                            <CssTextField
-                                type='text'
-                                size='small'
-                                inputProps={{ style: { color: "blue" } }}
-                                style={{ width: '40%', backgroundColor: '#f2abed' }}
-                                name="title"
-                                color="secondary"
-                                label="Enter a Name"
-                                variant="outlined"
-                                {...formik.getFieldProps('title')}
-                                {...errorHelper(formik, 'title')}
-                            />
-                            <div className='mt-3'>
-                                <CssTextField
-                                    type='text'
-                                    size='small'
-                                    inputProps={{ style: { color: "blue" } }}
-                                    style={{ width: '40%', backgroundColor: '#f2abed' }}
-                                    name="age"
-                                    color="secondary"
-                                    label="Enter a Age"
-                                    variant="outlined"
-                                    {...formik.getFieldProps('age')}
-                                    {...errorHelper(formik, 'age')}
-                                />
-                            </div>
-                            <div className='mt-3'>
-                                <CssTextField
-                                    inputProps={{ style: { color: "blue" } }}
-                                    style={{ width: '40%', backgroundColor: '#f2abed' }}
-                                    name="description"
-                                    size="small"
-                                    color="secondary"
-                                    label="Enter a Description"
-                                    variant="outlined"
-                                    {...formik.getFieldProps('description')}
-                                    {...errorHelper(formik, 'description')}
-                                    multiline
-                                    rows={2}
-                                />
-                            </div>
-                            <div className='mt-3'>
-                                <CssTextField
-                                    inputProps={{ style: { color: "blue" } }}
-                                    style={{ width: '40%', backgroundColor: '#f2abed' }}
-                                    name="rich_description"
-                                    color="secondary"
-                                    label="Enter a Rich Description"
-                                    variant="outlined"
-                                    {...formik.getFieldProps('rich_description')}
-                                    {...errorHelper(formik, 'rich_description')}
-                                    helperText="*Optional if you need explain description more"
-                                    multiline
-                                    rows={4}
-                                />
-                            </div>
-                            <FormControl style={{ marginTop: 12, width: '40%' }}>
-                                <InputLabel >Select a type</InputLabel>
-                                <Select
-                                    inputProps={{ style: { color: "blue" } }}
-                                    style={{ backgroundColor: '#f2abed' }}
-                                    name="type"
-                                    variant="filled"
-                                    label="Select a type"
-                                    {...formik.getFieldProps('type')}
-                                    error={formik.errors.type && formik.touched.type ? true : false}
-                                >
-                                    <MenuItem value="cat">Cat</MenuItem>
-                                    <MenuItem value="dog">Dog</MenuItem>
-                                </Select>
-                                {formik.errors.type && formik.touched.type ?
-                                    <FormHelperText error="true">
-                                        {formik.errors.type}
-                                    </FormHelperText>
-                                    : null
-                                }
-                            </FormControl>
-                            <div className='mt-3'>
-                                <CssTextField
-                                    type='text'
-                                    inputProps={{ style: { color: "blue" } }}
-                                    style={{ width: '40%', backgroundColor: '#f2abed' }}
-                                    name="location"
-                                    label="Enter a Location"
-                                    variant="outlined"
-                                    multiline
-                                    rows={2}
-                                    {...formik.getFieldProps('location')}
-                                    {...errorHelper(formik, 'location')}
-                                />
-                            </div>
-                        </form>
-                    </div>
-=======
                 <div className="h-screen w-screen bg-[#EBC8F1]">
                     <h2>Create Post</h2>
                     <form className="mt-[3px]" onSubmit={formik.handleSubmit}>
@@ -341,7 +210,6 @@ export default function CreatePost() {
 
                     </form>
                 </div>
->>>>>>> Stashed changes
             </div>
         </div>
     );
