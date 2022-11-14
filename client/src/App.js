@@ -21,8 +21,8 @@ function App() {
         </div>
       </div>
       <div>
-        {/* <CreatePost /> */}
-        <ReadPost />
+        <CreatePost />
+        {/* <ReadPost /> */}
       </div>
     </div>
   );

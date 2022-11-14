@@ -9,10 +9,10 @@ import { errorHelper, Loader } from '../../../utils/tools';
 // MUI
 import {  styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField'
-import Select from '@mui/material/Select'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import FormHelperText from '@mui/material/FormHelperText'
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
 
 
@@ -56,7 +56,7 @@ export default function CreatePost() {
         <div>
             <div className="flex flex-nowrap text-center bg-[#EBC8F1] ">
                 <div className="h-screen w-screen bg-[#EBC8F1]">
-                    <h2>Create Post</h2>
+                    <h1 className="text-2xl text-[#Ee3cea] my-2">Create Post</h1>
                     <form className="mt-[3px] bg-[#EBC8F1]" onSubmit={formik.handleSubmit}>
 
                         <CssTextField
@@ -133,6 +133,7 @@ export default function CreatePost() {
                             >
                                 <MenuItem value="cat">Cat</MenuItem>
                                 <MenuItem value="dog">Dog</MenuItem>
+                                <MenuItem value="other">อื่นๆ</MenuItem>
                             </Select>
                             {formik.errors.type && formik.touched.type ? (
                                 <FormHelperText error={true}>
@@ -183,7 +184,7 @@ export default function CreatePost() {
                                     file:rounded-full file:border-0
                                     file:text-md file:font-semibold  file:text-white
                                     file:bg-gradient-to-r file:from-blue-600 file:to-amber-600
-                                    hover:file:cursor-pointer hover:file:opacity-80"
+                                    hover:file:cursor-pointer hover:file:opacity-80 p-2 border-solid border-4 border-blue-500 rounded-lg"
                                     onChange={(e) => {
                                         setImages(e.target.files)
                                     }}

@@ -1,5 +1,6 @@
 const express = require('express');
 const { Post } = require('../models/post');
+const { User } = require('../models/user');
 
 const router = express.Router();
 
@@ -9,6 +10,43 @@ router.get(`/`, async (req, res) => {
     if (!postList) {
         res.status(500).json({ success: false })
     }
+    res.status(200).send(postList);
+});
+
+router.get(`/main/:userid`, async (req, res) => {
+    const postList = await Post.find();
+    const user = await User.findById(req.params.userid)
+
+    if (!user) {
+        return res.status(400).send('The user not found');
+    }
+    if (!postList) {
+        res.status(500).json({ success: false })
+    }
+
+    if (user) {
+
+        let userFavorite = user.favorites
+        let userDiscarded = user.discardeds
+        let dont_see_post = userFavorite.concat(userDiscarded)
+
+    
+        
+        let filterArrayPost  = []
+        
+        await postList.forEach((value) => {
+            dont_see_post.forEach(element => {
+                if (value._id != element) {
+                    filterArrayPost.push(value._id)
+                }
+            });
+            
+        })
+
+        console.log(filterArrayPost);
+    }
+
+    
     res.status(200).send(postList);
 });
 
