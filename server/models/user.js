@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-require('dotenv').config();
-
 
 
 const userSchema = mongoose.Schema({
+    username: {
+        type:String,
+        required:true,
+        trim:true,
+    },
     fullname: {
         type:String,
         required:true,
@@ -49,10 +52,6 @@ const userSchema = mongoose.Schema({
     favorite: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'favorites'
-    }],
-    message: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'messages'
     }],
     date: {
         type: Date,
