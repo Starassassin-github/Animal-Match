@@ -12,7 +12,8 @@ import {
     CardFooter,
     Typography,
     Tooltip,
-    Button
+    Button,
+    IconButton
 } from "@material-tailwind/react";
 
 export const PostCard = (props) => {
@@ -21,7 +22,7 @@ export const PostCard = (props) => {
     const item = props.item
 
     return (
-        <Card className="w-96 mb-3">
+        <Card onClick={() => alert("Hello!")} className="w-96 mb-3 cursor-pointer">
             <CardHeader floated={false} className="h-80">
                 <img src={ImageTestpost} alt="" />
             </CardHeader>
@@ -34,39 +35,7 @@ export const PostCard = (props) => {
                 </Typography>
             </CardBody>
             <CardFooter className="flex justify-center gap-7 pt-2">
-                <Tooltip content="Like">
-                    <Typography
-                        as="a"
-                        href="#facebook"
-                        variant="lead"
-                        color="blue"
-                        textGradient
-                    >
-                        <i className="fab fa-facebook" />
-                    </Typography>
-                </Tooltip>
-                <Tooltip content="Follow">
-                    <Typography
-                        as="a"
-                        href="#twitter"
-                        variant="lead"
-                        color="light-blue"
-                        textGradient
-                    >
-                        <i className="fab fa-twitter" />
-                    </Typography>
-                </Tooltip>
-                <Tooltip content="Follow">
-                    <Typography
-                        as="a"
-                        href="#instagram"
-                        variant="lead"
-                        color="purple"
-                        textGradient
-                    >
-                        <i className="fab fa-instagram" />
-                    </Typography>
-                </Tooltip>
+                <Button color='blue'>Say Hello</Button>
             </CardFooter>
         </Card>
     );

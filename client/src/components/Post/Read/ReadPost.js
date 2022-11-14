@@ -19,7 +19,7 @@ export default function ReadPost() {
 
     useEffect(() => {
         setPosts(db);
-        
+
         return () => {
             setPosts([]);
         }
@@ -31,21 +31,25 @@ export default function ReadPost() {
         <div>
             <div className="flex flex-nowrap text-center bg-[#EBC8F1] ">
                 <div className="h-screen w-screen bg-[#EBC8F1]">
-                    <h2>Read Post</h2>
+                    <h1 className="mt-5 text-xl">{posts.length} Matches</h1>
                     <div className="bg-[#EBC8F1]">
+                        <div class="divide-y-4 divide-black">
+                            <div>&nbsp;</div>
+                            <div>&nbsp;</div>
+                        </div>
                         {
                             posts.length > 0 ? (
                                 <div className="flex flex-row flex-wrap justify-around grid-cols-2">
-                                    { posts.map((item) => {
+                                    {posts.map((item) => {
                                         return (
                                             <PostCard
                                                 item={item}
                                                 key={item._id}
                                             />
                                         )
-                                    }) }
+                                    })}
                                 </div>
-                            ) : null 
+                            ) : null
                         }
                     </div>
                 </div>
