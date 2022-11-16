@@ -103,7 +103,7 @@ router.post(`/`, uploadOptions.array('images', 10), async (req, res) => {
         age: req.body.age,
         description: req.body.description,
         rich_description: req.body.rich_description,
-        // image: `${basePath}${fileName}`,
+        image: arrayImage[0],
         images: arrayImage,
         animal_type: req.body.animal_type,
         user_who_post: req.body.user_who_post,
