@@ -3,6 +3,9 @@ require('dotenv').config();
 
 
 const postSchema = mongoose.Schema({
+    image: {
+        type: String
+    },
     images: {
         type: Array
     },
