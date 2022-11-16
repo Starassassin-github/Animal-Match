@@ -5,7 +5,7 @@ import axios from 'axios';
 
 // helper
 import { validation, formValues } from './validationSchema';
-import { errorHelper, Loader } from '../../../utils/tools';
+import { errorHelper, showToast } from '../../../utils/tools';
 
 // MUI
 import { styled } from '@mui/material/styles';
@@ -39,8 +39,8 @@ const CssTextField = styled(TextField)({
 
 export default function CreatePost() {
 
+
     const [images, setImages] = useState([]);
-    const [imageURLs, setImageURLs] = useState([]);
 
 
     const formik = useFormik({
@@ -48,38 +48,42 @@ export default function CreatePost() {
         initialValues: formValues,
         validationSchema: validation,
         onSubmit: (values) => {
-            console.log(values.title);
-            let formData = new FormData();
-            const configHeaders = {
-                headers: {
-                    "Content-Type": "multipart/form-data",
+
+            if (images > 0) {
+                let formData = new FormData();
+                const configHeaders = {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    }
                 }
-            }
 
-
-
-            Array.from(images).forEach(item => {
-                formData.append("images", item)
-            })
-            formData.append("title", values.title)
-            formData.append("location", values.description)
-            formData.append("discription", values.description)
-            formData.append("animal_type", values.type)
-            formData.append("age", values.age)
-            formData.append("rich_description", values.rich_description)
-
-            const postHandler = async () => {
-                let post = await axios.post(`http://localhost:3341/api/v1/posts/`, formData, configHeaders).then(result => {
-                    console.log(result)
-                }).catch(err => {
-                    console.log(err)
+                Array.from(images).forEach(item => {
+                    formData.append("images", item)
                 })
-            }
+                formData.append("title", values.title)
+                formData.append("location", values.location)
+                formData.append("description", values.description)
+                formData.append("animal_type", values.type)
+                formData.append("age", values.age)
+                formData.append("rich_description", values.rich_description)
 
-            if (images) {
-                postHandler()
-            }
+                const postHandler = async () => {
+                    let post = await axios.post(`http://localhost:3341/api/v1/posts/`, formData, configHeaders).then(result => {
+                        const msg = "Post Added!"
+                        showToast('SUCCESS', msg)
+                    }).catch(err => {
+                        const msg = "Something Wrong!"
+                        showToast('ERROR', msg)
+                    })
+                }
 
+                if (images) {
+                    postHandler()
+                }
+            } else {
+                const msg = "Please Complete the information"
+                showToast('ERROR', msg)
+            }
         },
     });
 
@@ -204,12 +208,12 @@ export default function CreatePost() {
                                         )
                                     })
                                 }
+                                
                             </div>
 
                             <div>
                                 <input
                                     size="60"
-                                    // className="border-4 border-solid bg-gray-50 rounded-lg border-purple-600 overflow-hidden cursor-pointer text-fuchsia-500 inline-block dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                     className="text-sm text-grey-500
                                     file:mr-5 file:py-3 file:px-10
                                     file:rounded-full file:border-0

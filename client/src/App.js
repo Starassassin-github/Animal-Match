@@ -5,6 +5,8 @@ import React from "react";
 import Hamburger from './components/hamburger/hamburger';
 import CreatePost from './components/Post/Create/CreatePost';
 import ReadPost from "./components/Post/Read/ReadPost";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -24,6 +26,7 @@ function App() {
         <CreatePost />
         {/* <ReadPost /> */}
       </div>
+      <ToastContainer />
     </div>
   );
 }

@@ -27,8 +27,8 @@ export const validation = () => (
         location:Yup.string()
         .required('Sorry the location is required')
         .max(150,'Sorry its 150 max'),
-        // image:Yup.array()
+        // images:Yup.array()
         // .required('Must have image')
-        // .min(1,'Minimum is 1'),
+        // .min(1,'Minimum is 1')
     })
 )
