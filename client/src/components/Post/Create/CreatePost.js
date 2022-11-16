@@ -1,13 +1,14 @@
 // import
 import { useState, useRef, useEffect } from "react";
 import { useFormik, FieldArray, FormikProvider } from "formik";
+import axios from 'axios';
 
 // helper
 import { validation, formValues } from './validationSchema';
 import { errorHelper, Loader } from '../../../utils/tools';
 
 // MUI
-import {  styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField'
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -47,8 +48,38 @@ export default function CreatePost() {
         initialValues: formValues,
         validationSchema: validation,
         onSubmit: (values) => {
-            console.log(values);
-            console.log(images);
+            console.log(values.title);
+            let formData = new FormData();
+            const configHeaders = {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                }
+            }
+
+
+
+            Array.from(images).forEach(item => {
+                formData.append("images", item)
+            })
+            formData.append("title", values.title)
+            formData.append("location", values.description)
+            formData.append("discription", values.description)
+            formData.append("animal_type", values.type)
+            formData.append("age", values.age)
+            formData.append("rich_description", values.rich_description)
+
+            const postHandler = async () => {
+                let post = await axios.post(`http://localhost:3341/api/v1/posts/`, formData, configHeaders).then(result => {
+                    console.log(result)
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+
+            if (images) {
+                postHandler()
+            }
+
         },
     });
 

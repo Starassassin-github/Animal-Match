@@ -3,9 +3,9 @@ require('dotenv').config();
 
 
 const postSchema = mongoose.Schema({
-    images: [{
-        type:String,
-    }],
+    images: {
+        type: Array
+    },
     age: {
         type: String,
     },

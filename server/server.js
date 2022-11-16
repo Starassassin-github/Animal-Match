@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
+var path = require('path');
+
 require('dotenv/config');
+app.use(cors());
+app.options('*', cors())
 
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -26,6 +31,8 @@ const { handleError, convertToApiError } = require('./middleware/apiError');
 // middleware
 app.use(express.json());
 app.use(morgan('tiny'));
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
 
 mongoose.connect(mongoUri)

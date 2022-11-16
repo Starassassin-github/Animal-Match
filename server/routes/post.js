@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
         if (isValid) {
             uploadError = null;
         }
-        cb(uploadError, 'public/uploads');
+        cb(uploadError, 'server/public/uploads');
     },
     filename: function (req, file, cb) {
         const fileName = file.originalname.split(' ').join('-');
@@ -87,59 +87,37 @@ router.get(`/:id`, async (req, res) => {
     res.status(200).send(post);
 })
 
-router.post(`/`, async (req, res) => {
+router.post(`/`, uploadOptions.array('images', 10), async (req, res) => {
 
-    const file = req.file;
-    const fileName = file.filename;
+    const files = req.files;
+    const fileName = files.filename;
     const basePath = `${req.protocol}://${req.get('host')}/public/uploads/`;
 
-    if (!file) {
-        console.log('No image in the request');
+    arrayImage = []
+    files.forEach((item) => {
+        arrayImage.push(`${basePath}${item.filename}`)
+    })
 
-        let post = new Post({
-            title: req.body.title,
-            age: req.body.age,
-            description: req.body.description,
-            rich_description: req.body.rich_description,
-            image: req.body.image,
-            imgaes: req.body.images,
-            animal_type: req.body.animal_type,
-            user_who_post: req.body.user_who_post,
-            user_favorite: req.body.user_favorite,
-            location: req.body.location,
-        })
+    let post = new Post({
+        title: req.body.title,
+        age: req.body.age,
+        description: req.body.description,
+        rich_description: req.body.rich_description,
+        // image: `${basePath}${fileName}`,
+        images: arrayImage,
+        animal_type: req.body.animal_type,
+        user_who_post: req.body.user_who_post,
+        user_favorite: req.body.user_favorite,
+        location: req.body.location,
+    })
 
-        post = await post.save();
+    post = await post.save();
 
-        if (!post)
-            return res.status(400).send('the post cannot be created!')
+    if (!post)
+        return res.status(400).send('the post cannot be created!')
 
-        res.status(200).send(post);
+    res.status(200).send(post);
 
-    }
-
-    if (file) {
-
-        let post = new Post({
-            title: req.body.title,
-            age: req.body.age,
-            description: req.body.description,
-            rich_description: req.body.rich_description,
-            image: `${basePath}${fileName}`,
-            images: `${basePath}${fileName}`,
-            animal_type: req.body.animal_type,
-            user_who_post: req.body.user_who_post,
-            user_favorite: req.body.user_favorite,
-            location: req.body.location,
-        })
-
-        post = await post.save();
-
-        if (!post)
-            return res.status(400).send('the post cannot be created!')
-
-        res.status(200).send(post);
-    }
 
 });
 
