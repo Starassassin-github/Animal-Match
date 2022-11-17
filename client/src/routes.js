@@ -3,13 +3,13 @@ import React from "react";
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 // components
-import Hamburger from './components/hamburger/hamburger';
-import CreatePost from './components/Post/Create/CreatePost';
+
+
 import ReadPost from "./components/Post/Read/ReadPost";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Temp from "./components/temp/tempapp";
 import Create from "./components/Post/Create/Create";
+import LoginComponent from "./components/auth/LoginComponent";
 
 
 function MyRoute() {
@@ -17,6 +17,7 @@ function MyRoute() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Temp/>} />
+        <Route path='/login' element={<LoginComponent/>} />
         <Route path='/create' element={<Create/>}/>
       </Routes>
     </BrowserRouter>
