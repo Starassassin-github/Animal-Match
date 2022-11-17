@@ -7,7 +7,6 @@ export const formValues = {
     rich_description:'',
     type:'',
     location:'',
-    image:[],
 }
 
 

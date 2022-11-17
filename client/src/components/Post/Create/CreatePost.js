@@ -49,7 +49,7 @@ export default function CreatePost() {
         validationSchema: validation,
         onSubmit: (values) => {
 
-            if (images > 0) {
+            if (images.length > 0) {
                 let formData = new FormData();
                 const configHeaders = {
                     headers: {
