@@ -68,7 +68,7 @@ export default function CreatePost() {
                 formData.append("rich_description", values.rich_description)
 
                 const postHandler = async () => {
-                    let post = await axios.post(`http://localhost:3341/api/v1/posts/`, formData, configHeaders).then(result => {
+                    let post = await axios.post(`/api/v1/posts/`, formData, configHeaders).then(result => {
                         const msg = "Post Added!"
                         showToast('SUCCESS', msg)
                     }).catch(err => {
