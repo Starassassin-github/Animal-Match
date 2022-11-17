@@ -1,5 +1,6 @@
 // import
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import { useFormik, FieldArray, FormikProvider } from "formik";
 import axios from 'axios';
 
@@ -39,6 +40,7 @@ const CssTextField = styled(TextField)({
 
 export default function CreatePost() {
 
+    let navigate = useNavigate()
 
     const [images, setImages] = useState([]);
 
@@ -68,9 +70,14 @@ export default function CreatePost() {
                 formData.append("rich_description", values.rich_description)
 
                 const postHandler = async () => {
-                    let post = await axios.post(`/api/v1/posts/`, formData, configHeaders).then(result => {
+                    let post = await axios.post(`${process.env.REACT_APP_URL}/api/v1/posts/`, formData, configHeaders).then(result => {
                         const msg = "Post Added!"
                         showToast('SUCCESS', msg)
+                        setTimeout(() => {
+                            navigate("/")
+                        }, 3000)
+
+                        
                     }).catch(err => {
                         const msg = "Something Wrong!"
                         showToast('ERROR', msg)

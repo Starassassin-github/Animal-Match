@@ -9,14 +9,15 @@ import ReadPost from "./components/Post/Read/ReadPost";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Temp from "./components/temp/tempapp";
-
+import Create from "./components/Post/Create/Create";
 
 
 function MyRoute() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Temp/>}/>
+        <Route path='/' element={<Temp/>} />
+        <Route path='/create' element={<Create/>}/>
       </Routes>
     </BrowserRouter>
   );
