@@ -91,7 +91,7 @@ export default function CreatePost() {
         <div>
             <div className="flex flex-nowrap text-center bg-[#EBC8F1] ">
                 <div className="h-screen w-screen bg-[#EBC8F1]">
-                    <h1 className="text-2xl text-[#Ee3cea] my-2">Create Post</h1>
+                    <h1 className="text-2xl text-[#Ee3cea] my-2 font-roboto">Create Post</h1>
                     <form className="mt-[3px] bg-[#EBC8F1]" onSubmit={formik.handleSubmit}>
 
                         <CssTextField

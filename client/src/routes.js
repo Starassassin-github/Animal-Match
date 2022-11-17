@@ -12,7 +12,7 @@ import Temp from "./components/temp/tempapp";
 
 
 
-function Routes() {
+function MyRoute() {
   return (
     <BrowserRouter>
       <Routes>
@@ -22,4 +22,4 @@ function Routes() {
   );
 }
 
-export default Routes;
+export default MyRoute;
