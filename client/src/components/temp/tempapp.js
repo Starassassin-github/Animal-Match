@@ -1,16 +1,19 @@
 // import
 import React from "react";
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 // components
-import Hamburger from './components/hamburger/hamburger';
-import CreatePost from './components/Post/Create/CreatePost';
-import ReadPost from "./components/Post/Read/ReadPost";
+// import Hamburger from './components/hamburger/hamburger';
+// import CreatePost from './components/Post/Create/CreatePost';
+// import ReadPost from "./components/Post/Read/ReadPost";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Hamburger from "../hamburger/hamburger";
+import CreatePost from "../Post/Create/CreatePost";
 
 
 
-function App() {
+function Temp() {
   return (
     <div className='flex flex-col  w-sreen h-screen relative'>
       <div>
@@ -31,4 +34,4 @@ function App() {
   );
 }
 
-export default App;
+export default Temp;
