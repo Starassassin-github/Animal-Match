@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Temp from "./components/temp/tempapp";
 import Create from "./components/Post/Create/Create";
 import LoginComponent from "./components/auth/LoginComponent";
+import RegisterComponent from "./components/auth/RegisterComponent";
 
 
 function MyRoute() {
@@ -19,6 +20,7 @@ function MyRoute() {
         <Route path='/' element={<Temp/>} />
         <Route path='/login' element={<LoginComponent/>} />
         <Route path='/create' element={<Create/>}/>
+        <Route path='/register' element={<RegisterComponent/>} />
       </Routes>
     </BrowserRouter>
   );

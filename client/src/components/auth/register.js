@@ -55,7 +55,7 @@ export default function Register() {
   }
 
   return (
-    <div className="flex flex-col bg-[#FEE39F] h-full w-screens place-items-center">
+    <div className="flex flex-col bg-[#FEE39F] sm:bg-[#FEE39F] h-screen w-screen place-items-center place-content-center">
       <div>
         <h1 className="text-pink-500 font-bold text-5xl mt-10 underline decoration-fuchsia-600">Register</h1>
         <img
@@ -69,37 +69,33 @@ export default function Register() {
         <form class="flex flex-col rounded pt-6 pb-8 mb-4 sm:w-full place-items-center" onSubmit={createAccount}>
           <div class="md:flex md:flex-row">
             {/* Name */}
-            <div class="rounded-full mb-3 flex place-items-start bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] md:mx-2 border-[#C505F5]">
+
               <input
-                class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline"
+                class="appearance-none outline outline-0  rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-3 flex place-items-start bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] md:mx-2 border-[#C505F5]"
                 id="Name"
                 type="text"
                 placeholder="Name"
                 onChange={(text) => {setName(text.target.value)}}
                 name="Name"
                 required
-                ></input>
-            </div>
+                />
 
             {/* Lastname */}
-            <div class="rounded-full mb-3 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] md:mx-2 border-[#C505F5]">
               <input
-                class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline"
+                class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-3 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] md:mx-2 border-[#C505F5]"
                 id="Lastname"
                 type="text"
                 placeholder="Lastname"
                 onChange={(text) => {setLastname(text.target.value)}}
                 required
               ></input>
-            </div>
           </div>
 
           <div class="flex flex-row">
             {/* Monthhhhhhhhhhhhhhhhhhh */}
             <div>
               <div class="relative flex w-full">
-              <div class="rounded-full mb-3 flex place-items-end bg-white shadow appearance-none border gray-100 py-0focus:outline-none focus:shadow-outline w-[130px] mx-2 border-[#C505F5]">
-                <select class="rounded-full flex place-items-end bg-white px-1 gray-700 py-2 focus:outline-none focus:shadow-outline w-full mx-2 h-[37px]" onChange={(text) => {setMonth(text.target.value)}} required> 
+                <select class="rounded-full text-gray-600 flex place-items-end bg-white px-1 gray-700 py-2 focus:outline-none focus:shadow-outline w-full mx-2 h-[37px] rounded-full mb-3 flex place-items-end bg-white shadow appearance-none border gray-100 py-0focus:outline-none focus:shadow-outline w-[130px] mx-2 border-[#C505F5]" onChange={(text) => {setMonth(text.target.value)}} required> 
                   <option value="January">January</option>
                   <option value="February">February</option>
                   <option value="March">March</option>
@@ -113,15 +109,13 @@ export default function Register() {
                   <option value="November">November</option>
                   <option value="December">December</option>
                 </select>
-                </div>
               </div>
             </div>
 
             {/* date*/}
             <div>
               <div class="relative flex w-full">
-              <div class="rounded-full mb-3 flex place-items-end bg-white shadow appearance-none border gray-100 py-0focus:outline-none focus:shadow-outline w-[100px] mx-2 border-[#C505F5]">
-                <select class="rounded-full flex place-items-end bg-white px-1 gray-700 py-2 focus:outline-none focus:shadow-outline w-full mx-2 h-[37px]" onChange={(text) => {setDate(text.target.value)}} required>
+                <select class="rounded-full text-gray-600 flex place-items-end bg-white px-1 gray-700 py-2 focus:outline-none focus:shadow-outline w-full mx-2 h-[37px] rounded-full mb-3 flex place-items-end bg-white shadow appearance-none border gray-100 py-0focus:outline-none focus:shadow-outline w-[100px] mx-2 border-[#C505F5]" onChange={(text) => {setDate(text.target.value)}} required>
                   <option value="่1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -154,7 +148,6 @@ export default function Register() {
                   <option value="30">30</option>
                   <option value="31">31</option>
                 </select>
-                </div>
               </div>
             </div>
 
@@ -177,88 +170,74 @@ export default function Register() {
           {/* Gender */}
           <div class="w-[300px]">
             <div class="relative flex w-full ">
-            <div class="rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]">
-              <select class="rounded-full flex place-items-end bg-white gray-700 px-1 py-2 focus:outline-none focus:shadow-outline h-[37px] w-[300px]" onChange={(text) => {setGender(text.target.value)}} required>
+              <select className="rounded-full text-gray-600 flex place-items-end bg-white gray-700 px-1 py-2 focus:outline-none focus:shadow-outline h-[37px] w-[300px] rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]" onChange={(text) => {setGender(text.target.value)}} required>
                 <option value="male" >Male</option>
                 <option value="female" >Female</option>
                 <option value="other" >Other</option>
               </select>
-              </div>
             </div>
           </div>
 
           {/* Phone */}
-          <div class="rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]">
             <input
-              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline"
+              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
               id="Phone"
               type="text"
               placeholder="Phone"
               onChange={(text) => {setPhone(text.target.value)}}
               required
             ></input>
-          </div>
 
           {/* Address */}
-          <div class="rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]">
             <input
-              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline"
+              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
               id="Address"
               type="text"
               placeholder="Address"
               onChange={(text) => {setAddress(text.target.value)}}
               required
             ></input>
-          </div>
 
           {/* Username */}
-          <div class="rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]">
             <input
-              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline"
+              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
               id="Username"
               type="text"
               placeholder="Username"
               onChange={(text) => {setUsername(text.target.value)}}
               required
             ></input>
-          </div>
 
           {/*Password */}
-          <div class="rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]">
             <input
-              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline"
+              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
               id="Password"
               type="password"
               placeholder="Password"
               onChange={(text) => {setPassword(text.target.value)}}
               required
             ></input>
-          </div>
 
           {/*Confirm Password */}
-          <div class="rounded-full flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]">
             <input
-              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline"
+              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
               id="Password"
               type="password"
               placeholder="Confirm Password"
               onChange={(text) => {setConfirmPassword(text.target.value)}}
               required      
             ></input>  
-          </div>
           <div>{password != confirmPassword ? <h1 class="text-[red]">Password and Confirm Password does not match.</h1> : null}</div>
 
           {/* Email */}
-          <div class="rounded-full mt-4 mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]">
             <input
-              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline"
+              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mt-4 mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
               id="Email"
               type="email"
               placeholder="Email"
               onChange={(text) => {setEmail(text.target.value)}}
               required
             ></input>
-          </div>
 
           {/* confirm and cancel */}
           <div class="flex flex-row items-center ">
