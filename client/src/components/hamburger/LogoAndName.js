@@ -4,15 +4,10 @@ import { IoArrowBackCircleSharp } from 'react-icons/io5';
 
 
 export default function LogoAndName() {
-  const strHead = <h1 className="sm:text-[40px] mt-[35px]  text-[30px] text-[#DC00C1] font-['Poppins'] ">ANIMAL MATCH</h1>
+  const strHead = <h1 className=" mt-[35px]  sm:mt-[20px] text-[30px] text-[#DC00C1] font-['Poppins'] hover:text-[#3D94F6]">ANIMAL MATCH</h1>
   return (
-    <div className="flex">
-        <IconContext.Provider value={{ size: "40px"}}>
-          <div className="mt-[25px]">
-            <IoArrowBackCircleSharp />
-          </div>
-        </IconContext.Provider>
-        <img src={Animal_MatchLogo} alt="Animal_MatchLogo" className="w-[100px] h-[100px] text-center sm:w-[120px]  sm:h-[120px] " />
+    <div className="flex flex-row w-screen relative">
+        <img src={Animal_MatchLogo} alt="Animal_MatchLogo" className="w-[100px] h-[100px] text-center " />
         {strHead}
     </div>
   );

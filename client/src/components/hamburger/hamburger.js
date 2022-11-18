@@ -8,14 +8,15 @@ import {IoSettingsOutline} from 'react-icons/io5';
 import {IoLogOutOutline} from 'react-icons/io5';
 
 // import 
-import LogoAndName from "./LogoAndName";
+import LogoAndName from './LogoAndName';
 
 export default function Hamburger() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   
 
   return (
-    <div className="flex text-center justify-between bg-[#EBC8F1] h-[100px]  sm:h-[140px] ">
+  <div>
+    <div className="flex text-center justify-between relative bg-[#FCE5FF] sm:bg-[#EBC8F1] h-[120px] ">
       <LogoAndName />
       <nav>
         <section className="MOBILE-MENU flex sm:hidden ">
@@ -95,24 +96,25 @@ export default function Hamburger() {
           </div>
         </section>
 
-        <ul className="DESKTOP-MENU hidden space-x-2 sm:flex border-l-[10px]  mt-[20px] border-[#EBC8F1] ">
-          <li className="bg-[#FEE9FF] hover:bg-[#FEE39F] mt-[27px] py-3 px-4 rounded-full border-[1px] border-[#FF00C5] shadow shadow-blue-500/70">
-            <a href="/Profile">Profile</a>
+        <ul className="DESKTOP-MENU hidden space-x-2 sm:flex  ">
+          <li className="bg-[#FEE9FF] hover:bg-[#C6F7F6] mt-[27px] py-3 px-4 rounded-full  border-[1px] border-[#FF00C5] shadow shadow-blue-500/70">
+            <a href="/Profile"><span className="hover:text-[#3167de]">Profile</span></a>
           </li>
-          <li className="bg-[#FEE9FF] hover:bg-[#FEE39F] mt-[27px] py-3 px-4 rounded-full border-[1px] border-[#FF00C5] shadow shadow-blue-500/70">
-            <a href="/Post History">Post History</a>
+          <li className="bg-[#FEE9FF] hover:bg-[#d8fdc4] mt-[27px] py-3 px-4 rounded-full border-[1px] border-[#FF00C5] shadow shadow-blue-500/70">
+            <a href="/Post History"><span className="hover:text-[#3167de]">Post History</span></a>
           </li>
-          <li className="bg-[#FEE9FF] hover:bg-[#FEE39F] mt-[27px] py-3 px-4 rounded-full border-[1px] border-[#FF00C5] shadow shadow-blue-500/70">
-            <a href="/Setting">Setting</a>
+          <li className="bg-[#FEE9FF] hover:bg-[#faeac0] mt-[27px] py-3 px-4 rounded-full border-[1px] border-[#FF00C5] shadow shadow-blue-500/70">
+            <a href="/Setting"><span className="hover:text-[#3167de]">Setting</span></a>
           </li>
-          <li className="bg-[#FEE9FF] hover:bg-[#FEE39F] mt-[27px] py-3 px-4 rounded-full border-[1px] border-[#FF00C5] shadow shadow-blue-500/70">
-            <a href="/Sign Out">Sign Out</a>
+          <li className="bg-[#FEE9FF] hover:bg-[#ffd2df] mt-[27px] py-3 px-4 rounded-full border-[1px] border-[#FF00C5] shadow shadow-blue-500/70">
+            <a href="/Sign Out"><span className="hover:text-[#3167de]">Sign Out</span></a>
           </li>
           <li>
             <a href="/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
           </li>
         </ul>
       </nav>
+      
       <style>{`
       .hideMenuNav {
         display: none;
@@ -138,5 +140,15 @@ export default function Hamburger() {
       }
     `}</style>
     </div>
+    <div className = "flex text-center h-[3px] bg-[#EBC8F1] sm:bg-gradient-to-r from-[#EF2DFF] to-[#F0DE00] ">
+        <h1 >&nbsp;</h1>
+    </div>
+    <div className = "flex text-center h-[10px] bg-[#EBC8F1] sm:bg-gradient-to-r from-[#FF00C5] to-[#B870E7] ">
+      <h1 >&nbsp;</h1>
+    </div>
+    <div className = "flex text-center h-[3px] bg-[#EBC8F1] sm:bg-gradient-to-r from-[#F0DE00] to-[#9DFCFF] ">
+        <h1 >&nbsp;</h1>
+    </div>
+  </div>
   );
 }

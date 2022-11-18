@@ -3,6 +3,8 @@ import cookie from 'react-cookies';
 import Animal_MatchLogo from '../images/Animal_MatchLogo.png';
 import ImageTestpost from '../images/ImageTestPost.jpg';
 import aniloading from '../images/ani-loading.svg';
+import 'react-slideshow-image/dist/styles.css'
+import { Slide } from 'react-slideshow-image';
 
 import {
     Card,
@@ -89,3 +91,42 @@ export const removeTokenCookie = () => cookie.remove('x-access-token', { path: '
 export const getAuthHeader = () => {
     return { headers: { 'Authorization': `Bearer ${getTokenCookie()}` } }
 }
+
+export const ImageCart = () => {
+    const slideImages = [
+        {
+          url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKr5wT7rfkjkGvNeqgXjBmarC5ZNoZs-H2uMpML8O7Q4F9W-IlUQibBT6IPqyvX45NOgw&usqp=CAU',
+          caption: 'Slide 1'
+        },
+        {
+          url: 'https://res.cloudinary.com/jerrick/image/upload/v1668106965/636d4ad570b2ec001cba5201.jpg',
+          caption: 'Slide 2'
+        },
+        {
+          url: 'https://media.wired.com/photos/5cdefb92b86e041493d389df/2:1/w_1500,h_750,c_limit/Culture-Grumpy-Cat-487386121.jpg',
+          caption: 'Slide 3'
+        },
+      ];
+
+      const Slideshow = () => {
+        return (
+          <div className="slide-container bg-[#eedcf1] w-[390px] h-[440px] sm:w-[550px] sm:h-[580px] lg:w-[490px] lg:h-[520px] rounded-r-2xl rounded-l-2xl border-8 border-[#F8FFAF]">
+            <Slide className=" ">
+             {slideImages.map((slideImage, index)=> (
+                <div className="each-slide" key={index}>
+                  <div>
+                  <img src={slideImage.url} alt="" className="w-[390px] h-[420px]  sm:w-[550px] sm:h-[560px] lg:w-[490px] lg:h-[500px] rounded-r-2xl rounded-l-2xl" />
+    
+                  </div>
+                </div>
+              ))} 
+            </Slide>
+          </div>
+        )
+    }
+
+    return (
+        Slideshow()      
+    );
+}
+
