@@ -1,4 +1,3 @@
-import CircularProgress from '@mui/material/CircularProgress';
 import { toast } from 'react-toastify';
 import cookie from 'react-cookies';
 import Animal_MatchLogo from '../images/Animal_MatchLogo.png';
@@ -46,7 +45,7 @@ export const ButtonMUI = () => {
   }
 
 
-export const loading = () => {
+export const Loader = () => {
     return (
         <div className='flex flex-col bg-[#FEE39F] h-screen w-screen place-items-center place-content-center'>
             <div>
@@ -65,11 +64,6 @@ export const errorHelper = (formik, values) => ({
     helperText: formik.errors[values] && formik.touched[values] ? formik.errors[values] : null
 })
 
-export const Loader = () => (
-    <div className='root_loader'>
-        <CircularProgress />
-    </div>
-)
 
 export const showToast = (type, msg) => {
     switch (type) {

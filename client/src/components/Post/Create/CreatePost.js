@@ -75,7 +75,7 @@ export default function CreatePost() {
                         showToast('SUCCESS', msg)
                         setTimeout(() => {
                             navigate("/")
-                        }, 3000)
+                        }, 2500)
 
                         
                     }).catch(err => {
