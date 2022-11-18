@@ -1,5 +1,5 @@
 import Hamburger from '../hamburger/hamburger';
-import MenubarDesktop from '../menubarDesktop';
+import MenubarDesktop from './menubarDesktop';
 import PageBody from './pageBody';
 
 
