@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import MyRoute from './routes';
+import Auth from './Context/store/Auth';
 
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from "@material-tailwind/react";
@@ -10,7 +11,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ThemeProvider>
-      <MyRoute />
+      <Auth>
+        <MyRoute />
+      </Auth>
     </ThemeProvider>
   </React.StrictMode>
 );
