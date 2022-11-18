@@ -7,12 +7,6 @@ export default function BodyUserSetting() {
     const [emailSetting, setEmailSetting] = useState("munim@gmail.com");
     const [addressSetting, setAddressSetting] = useState("1/234 bangkok thailand");
 
-  
-
-  
-
-
-
     
 
     const handleSubmit = (e) => {
@@ -21,7 +15,6 @@ export default function BodyUserSetting() {
         console.log(user1)
     }
 
-    console.log(user1)
 
     const cheackDataSetting = () => {
       console.log(nameSetting)

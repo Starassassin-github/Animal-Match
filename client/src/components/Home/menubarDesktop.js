@@ -1,6 +1,6 @@
-import  Animal_MatchLogo from '../images/Animal_MatchLogo.png';
-import messageBotton from '../images/messageBotton.png';
-import CreatePostButton from '../images/CreatePostButton.png';
+import  Animal_MatchLogo from '../../images/Animal_MatchLogo.png';
+import messageBotton from '../../images/messageBotton.png';
+import CreatePostButton from '../../images/CreatePostButton.png';
 
 export default function MenubarDesktop() {
   const createPostScreenButton = () => {console.log("go to create post screen")}

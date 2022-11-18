@@ -1,7 +1,8 @@
 import HeadUserAccount from "./HeadUserAcount";
 import profileUserTest from '../../../images/profileUserTest.jpg';
 import BodyUserAccount from "./BodyUserAccount";
-import MenubarDesktop from "../../menubarDesktop";
+import MenubarDesktop from "../../Home/menubarDesktop";
+
 
 
 

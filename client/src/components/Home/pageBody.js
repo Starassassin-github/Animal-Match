@@ -1,6 +1,6 @@
-import ImageTestPost from '../images/ImageTestPost.jpg';
-import LikePostButton from '../images/LikePostButton.png';
-import DislikeButton from '../images/DislikeButton.png';
+import ImageTestPost from '../../images/ImageTestPost.jpg';
+import LikePostButton from '../../images/LikePostButton.png';
+import DislikeButton from '../../images/DislikeButton.png';
 import { PostCard } from './postcard';
 
 
