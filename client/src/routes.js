@@ -1,9 +1,9 @@
 // import
-import React from "react";
+import React, { useContext } from "react";
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
-// components
 
+// components
 
 import ReadPost from "./components/Post/Read/ReadPost";
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,14 +12,21 @@ import Create from "./components/Post/Create/Create";
 import LoginComponent from "./components/auth/LoginComponent";
 import RegisterComponent from "./components/auth/RegisterComponent";
 
+import PrivateRoutes from "./hoc/PrivateRoutes";
+
 
 function MyRoute() {
+
+ 
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Temp/>} />
+        <Route element={<PrivateRoutes/>}>
+          <Route path='/' element={<Temp/>}/>
+          <Route path='create' element={<Create/>}/>
+        </Route>
         <Route path='/login' element={<LoginComponent/>} />
-        <Route path='/create' element={<Create/>}/>
         <Route path='/register' element={<RegisterComponent/>} />
       </Routes>
     </BrowserRouter>
