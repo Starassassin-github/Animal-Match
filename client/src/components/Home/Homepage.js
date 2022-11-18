@@ -5,24 +5,15 @@ import Hamburger from '../hamburger/hamburger';
 import MenubarDesktop from './menubarDesktop';
 import PageBody from './pageBody';
 
-// Context
-import AuthGlobal from '../../Context/store/AuthGlobal';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Homepage() {
 
   const effectRan = useRef(false);
 
-  const context = useContext(AuthGlobal)
-
-  const [postInMain, setPostInMain] = useState([]);
-
   const [postId, setPostId] = useState('');
 
-
-  const [postData, setPostsData] = useState();
-
-  const [title, setTitle] = useState("");
   const [images, setImages] = useState([]);
 
   const handleAddPost = async (response) => {
@@ -44,8 +35,8 @@ export default function Homepage() {
           if (response.status === 200) {
             await handleAddPost(response).then((res) => {
                axios.get(`/api/v1/posts/${res}`).then((res)=>{
-                setTitle(res.data.title)
                 setImages(res.data.images)
+                setPostId(res.data._id)
                })
             })
 
@@ -59,8 +50,7 @@ export default function Homepage() {
       fetchWorkStatus();
 
       return () => {
-        setPostsData()
-        setPostInMain([]);
+        setImages([])
         setPostId("")
         effectRan.current = true
       };
@@ -72,8 +62,9 @@ export default function Homepage() {
       <div> <Hamburger /></div>
       <div>
       </div>
-      <div><PageBody images={images} /></div>
+      <div><PageBody images={images} _id={postId} /></div>
       <div><MenubarDesktop /></div>
+      <ToastContainer />
     </div>
   );
 }

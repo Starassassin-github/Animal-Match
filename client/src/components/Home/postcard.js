@@ -1,49 +1,62 @@
+import React, { useContext } from "react";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+
+import { showToast } from "../../utils/tools";
 
 import 'react-slideshow-image/dist/styles.css'
 import { Slide } from 'react-slideshow-image';
 import LikePostButton from '../../images/LikePostButton.png';
 import DislikeButton from '../../images/DislikeButton.png';
-import { useState } from "react";
 
+// Context
+import AuthGlobal from '../../Context/store/AuthGlobal';
 
 export const PostCard = (props) => {
 
-  // console.log(props.images);
+  const context = useContext(AuthGlobal)
+
+  let navigate = useNavigate()
 
 
-  const [likePost, setLikePost] = useState(false)
-  const [disLikePost, setDisLikePost] = useState(false)
+  const handleOffer = async () => {
 
-  //   const handleOffer = async (id) => {
+    let favoritePost = await axios.patch(`/api/v1/users/favorites/${context.stateUser.user.userId}/${props._id}`)
+      .then((res) => {
+        if (res.status == 200 || res.status == 201) {
+          const msg = "Liked"
+          showToast('SUCCESS', msg)
+          setTimeout(() => {
+              window.location.reload();
+          }, 2000)
+        }
+      })
+      .catch((error) => {
+        const msg = "Something Wrong!"
+        showToast('ERROR', msg)
+      })
 
-  //     let createContract = await axios.post(`${config.REACT_APP_API_URL}/contracts`, {
-  //         apply_id: _id_user,
-  //         image_apply: image,
-  //         // offer id, name, image is for test
-  //         offer_id: "6361511a20ee94c958f9ce27",
-  //         apply_name: name,
-  //         offer_name: "test for redux",
-  //         image_offer: "someurl for need to fetch from redux",
-  //         post: _id_post
-  //     });
-  //     let postOffer = await axios.put(`${config.REACT_APP_API_URL}/posts/offer/${_id_post}/${_id_user}?contract_id=${createContract.data._id}`)
-  //     let workResolve = await axios.patch(`${config.REACT_APP_API_URL}/users/work_resolve/${_id_user}/${_id_post}?type_resolve=o`)
+  }
 
-  //     let filterArrayUser =  arrayUserApplyData.filter((value, index)=> {
-  //         if (value._id !== id) {
-  //             return value
-  //         }
-  //     })
+  const handleReject = async () => {
 
-  //     let filterArrayOffer = arrayUserApplyData.filter((value, index) => {
-  //         if (value._id == id) {
-  //             return value
-  //         }
-  //     })
+    let discardedPost = await axios.patch(`/api/v1/users/discardeds/${context.stateUser.user.userId}/${props._id}`)
+      .then((res) => {
+        if (res.status == 200 || res.status == 201) {
+          const msg = "No another one"
+          showToast('SUCCESS', msg)
+          setTimeout(() => {
+              window.location.reload();
+          }, 2000)
+        }
+      })
+      .catch((error) => {
+        const msg = "Something Wrong!"
+        showToast('ERROR', msg)
+      })
 
-  //     setArrayUserApplyData(filterArrayUser);
-  //     setArrayOfferData(arrayOfferData => [...arrayOfferData, { user_data: filterArrayOffer[0], contract_data: createContract.data }])
-  // }
+  }
 
   const slideImages = []
   const imagesProps = props.images
@@ -51,27 +64,6 @@ export const PostCard = (props) => {
   imagesProps.forEach((element, index) => {
     slideImages.push({ url: element, caption: `Slide ${index + 1}` })
   });
-
-  console.log(slideImages);
-
-  // const slideImages = [
-  //     {
-  //       url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKr5wT7rfkjkGvNeqgXjBmarC5ZNoZs-H2uMpML8O7Q4F9W-IlUQibBT6IPqyvX45NOgw&usqp=CAU',
-  //       caption: 'Slide 1',
-
-  //     },
-  //     {
-  //       url: 'https://res.cloudinary.com/jerrick/image/upload/v1668106965/636d4ad570b2ec001cba5201.jpg',
-  //       caption: 'Slide 2',
-
-  //     },
-  //     {
-  //       url: 'https://media.wired.com/photos/5cdefb92b86e041493d389df/2:1/w_1500,h_750,c_limit/Culture-Grumpy-Cat-487386121.jpg',
-  //       caption: 'Slide 3',
-
-  //     },
-  //   ];
-  console.log(slideImages);
 
   const Slideshow = () => {
     return (
@@ -90,11 +82,11 @@ export const PostCard = (props) => {
                           <div className=' pb-[30px] mt-[20px]'>
                             <div className='flex  bg-[#ffbaff] rounded-full '>
                               <div className='ml-[90px] '>
-                                <img onClick={() => setLikePost(true)} src={LikePostButton} alt="LikePostButton" className="w-[65px] h-[65px]   mt-[7px]   cursor-pointer" />
+                                <img onClick={() => handleOffer()} src={LikePostButton} alt="LikePostButton" className="w-[65px] h-[65px]   mt-[7px]   cursor-pointer" />
                               </div>
 
                               <div className='ml-[110px]'>
-                                <img onClick={() => setDisLikePost(true)} src={DislikeButton} alt="DislikeButton" className="w-[65px] h-[65px]   mt-[7px]  cursor-pointer" />
+                                <img onClick={() => handleReject()} src={DislikeButton} alt="DislikeButton" className="w-[65px] h-[65px]   mt-[7px]  cursor-pointer" />
                               </div>
                             </div></div></span>
                       </div>
@@ -108,12 +100,12 @@ export const PostCard = (props) => {
                                 <span className='hidden sm:block'>
                                   <div className='flex  h-[90px]'>
                                     <div className='ml-[98px] '>
-                                      <img src={LikePostButton} onClick={() => setLikePost(true)} alt="LikePostButton" className="w-[65px] h-[65px] text-center  mt-[5px]   cursor-pointer" />
+                                      <img src={LikePostButton} onClick={() => handleOffer()} alt="LikePostButton" className="w-[65px] h-[65px] text-center  mt-[5px]   cursor-pointer" />
                                     </div>
 
 
                                     <div className='ml-[96px]'>
-                                      <img src={DislikeButton} onClick={() => setDisLikePost(true)} alt="DislikeButton" className="w-[65px] h-[65px] text-center  mt-[5px]  cursor-pointer" />
+                                      <img src={DislikeButton} onClick={() => handleReject()} alt="DislikeButton" className="w-[65px] h-[65px] text-center  mt-[5px]  cursor-pointer" />
                                     </div>
                                   </div></span>
                               </div>

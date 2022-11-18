@@ -60,7 +60,7 @@ router.get('/isauth', auth() , async (req, res) => {
 router.get(`/favorites/:id`, async (req, res) => {
     const user = await User.findById(req.params.id);
 
-    if (!userList) {
+    if (!user) {
         res.status(500).json({ success: false })
     }
     res.status(200).send(user);
