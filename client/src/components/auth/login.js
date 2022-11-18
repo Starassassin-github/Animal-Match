@@ -13,7 +13,7 @@ export default function Login() {
 
     const loginAccount = async() => {
         console.log("use check email")
-        const response = await axios.post(`${process.env.REACT_APP_URL}/users/login`, { username: usernameInput, password: passwordInput});
+        const response = await axios.post(`/api/v1/users/login`, { username: usernameInput, password: passwordInput});
         if (response.status === 200 || response === 201) {
             console.log(response.data)
         } else if (response.status === 400){
