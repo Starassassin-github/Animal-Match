@@ -1,11 +1,8 @@
 // import
 import React from "react";
 
-// components
-// import Hamburger from './components/hamburger/hamburger';
-// import CreatePost from './components/Post/Create/CreatePost';
-// import ReadPost from "./components/Post/Read/ReadPost";
-import { ToastContainer, toast } from 'react-toastify';
+
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Hamburger from "../../hamburger/hamburger";
 import CreatePost from "./CreatePost";

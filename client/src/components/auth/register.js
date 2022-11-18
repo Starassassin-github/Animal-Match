@@ -1,5 +1,4 @@
 import Animal_MatchLogo from "../../images/Animal_MatchLogo.png";
-import { Input } from "@material-tailwind/react";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import axios from "axios";
@@ -27,6 +26,7 @@ export default function Register() {
 
 
   const createAccount = async () => {
+
     const response = await axios.post(`/api/v1/users/register`, {
       fullname: name + " " + lastname,
       sex: gender,
@@ -219,13 +219,13 @@ export default function Register() {
           {/*Confirm Password */}
           <input
             class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
-            id="Password"
+            id="ConfirmPassword"
             type="password"
             placeholder="Confirm Password"
             onChange={(text) => { setConfirmPassword(text.target.value) }}
             required
           ></input>
-          <div>{password != confirmPassword ? <h1 class="text-[red]">Password and Confirm Password does not match.</h1> : null}</div>
+          <div>{password !== confirmPassword ? <h1 class="text-[red]">Password and Confirm Password does not match.</h1> : null}</div>
 
           {/* Email */}
           <input
@@ -249,7 +249,31 @@ export default function Register() {
 
             <button
               class="ml-2 bg-blue-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-blue-600 duration-300 text-white font-bold py-2 px-10 rounded rounded-lg"
-              onClick={() => createAccount()}
+              onClick={() => {
+
+                if (
+                  name.trim() === "" ||
+                  lastname.trim() === "" ||
+                  date.trim() === "" ||
+                  month.trim() === "" ||
+                  year.trim() === "" ||
+                  gender.trim() === "" ||
+                  phone.trim() === "" ||
+                  address.trim() === "" ||
+                  username.trim() === "" ||
+                  password.trim() === "" ||
+                  confirmPassword.trim() === "" ||
+                  email.trim() === ""
+                ) {
+                  let msg = "Please Complete the information"
+                  showToast('ERROR', msg)
+                }
+                if ((name !== "") && (lastname !== "") && (date !== "") && (month.trim() !== "") && (year.trim() !== "") && (gender.trim() !== "")
+                  && (phone.trim() !== "") && (address.trim() !== "") && (username.trim() !== "") && (password.trim() !== "")
+                  && (confirmPassword.trim() !== "") && (email.trim() !== "")) {
+                  createAccount()
+                }
+              }}
             >
               confirm
             </button>

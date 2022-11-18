@@ -26,7 +26,7 @@ export const loginUser = (user, dispatch) => {
         }
     })
     .catch((err) => {
-        const msg = "Something Wrong!"
+        const msg = "Something Wrong! Or Complete the information"
         showToast('ERROR', msg)
         logoutUser(dispatch)
     });

@@ -10,14 +10,14 @@ import Animal_MatchLogo from '../../images/Animal_MatchLogo.png';
 export default function Login() {
 
     const context = useContext(AuthGlobal)
+    
     let navigate = useNavigate()
 
     const [username, setUsernameInput] = useState("");
     const [password, setPasswordInput] = useState("");
 
     const goToRegister = () => {
-        console.log(username)
-        console.log(password)
+        navigate('/register')
     }
 
     const loginAccount = async () => {

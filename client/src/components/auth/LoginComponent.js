@@ -2,7 +2,8 @@
 import React from "react";
 
 import Login from "./login";
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -13,6 +14,7 @@ function LoginComponent() {
         <div>
             <Login />
         </div>
+        <ToastContainer />
     </div>
   );
 }
