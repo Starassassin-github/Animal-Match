@@ -5,7 +5,7 @@ import { PostCard } from './postcard';
 
 
 
-export default function PageBody() {
+export default function PageBody(props) {
 
   return (
   
@@ -16,7 +16,7 @@ export default function PageBody() {
     <div className="flex flex-nowrap  bg-[#eedcf1] sm:bg-[#fff] sm:h-[700px]">
         <div className='h-screen w-screen bg-[#c1d2fe]  flex  place-items-center  flex-col '>
         <div className='sm:mt-[100px] lg:mt-[50px]'>
-        <PostCard/>
+        <PostCard images={props.images}/>
         
         </div></div>  
     </div></div></span>  </div>
@@ -26,7 +26,7 @@ export default function PageBody() {
     <div className='bg-[#000]  w-screen '> 
     <div className="flex w-screen bg-[#fff] h-[560px] sm:bg-[#fff]  place-items-center  flex-col">
         <div className=''>
-        <PostCard/>
+        <PostCard images={props.images}/>
         </div>  
     </div></div></span>  </div>
     </div>

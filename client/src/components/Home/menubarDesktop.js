@@ -9,7 +9,7 @@ export default function MenubarDesktop() {
   return (
       <div className="text-center h-[100px] w-screen fixed bottom-0 bg-[#8F00FF60] sm:bg-[#8F00FF60] sm:h-[70px] sm:mt-[20px]">
     <div name='mobile'>
-      <span class='block sm:hidden'>
+      <span className='block sm:hidden'>
         <ul className="flex justify-center  flex-row">
           <img src={Animal_MatchLogo} onClick={() => HomeScreenButton() }  alt="Animal_MatchLogo" className="w-[90px] h-[90px] text-center mt-[10px] mx-2  m" />
           <img src={messageBotton} onClick={() => matchScreentbutton() } alt="messageBotton" className="w-[75px] h-[75px] text-center  mt-[15px]  mx-2 " />

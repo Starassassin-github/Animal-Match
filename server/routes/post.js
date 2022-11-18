@@ -57,25 +57,35 @@ router.get(`/main/:userid`, async (req, res) => {
         let userDiscarded = user.discardeds
         let dont_see_post = userFavorite.concat(userDiscarded)
 
+        let deArrayPostList = []
+        let deArraydont_see_post = []
+
+        postList.forEach(element => {
+            deArrayPostList.push(element._id.toString())
+        });
+
+        dont_see_post.forEach(element => {
+            deArraydont_see_post.push(element._id.toString())
+        });
+
+        let filter = []
+       
+        for (let index = 0; index < deArrayPostList.length; index++) {
+            const element = deArrayPostList[index];
+            if (deArraydont_see_post.indexOf(element) === -1) {
+                filter.push(element)
+            }
+            
+        }
 
 
-        let filterArrayPost = []
 
-        // oh^2
-        await postList.forEach((value) => {
-            dont_see_post.forEach(element => {
-                if (value._id != element) {
-                    filterArrayPost.push(value._id)
-                }
-            });
 
-        })
-
-        console.log(filterArrayPost);
+        res.status(200).send(filter);
     }
 
 
-    res.status(200).send(postList);
+    
 });
 
 router.get(`/:id`, async (req, res) => {

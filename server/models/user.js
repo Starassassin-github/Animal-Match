@@ -51,13 +51,13 @@ const userSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'posts',
     }],
-    discarded: {
+    discardeds: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'discardeds'
-    },
-    favorite: [{
+        ref: 'posts'
+    }],
+    favorites: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'favorites'
+        ref: 'posts'
     }],
     date: {
         type: Date,
