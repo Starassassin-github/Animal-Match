@@ -1,9 +1,17 @@
 import Animal_MatchLogo from "../../images/Animal_MatchLogo.png";
 import { Input } from "@material-tailwind/react";
+import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
-// import axios from "axios";
+import axios from "axios";
+
+// Toast
+import { showToast } from "../../utils/tools";
+
 
 export default function Register() {
+
+  let navigate = useNavigate()
+
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [date, setDate] = useState("1");
@@ -17,41 +25,31 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
 
-  const backToLogin = () => {
-    console.log(name)
-    console.log(lastname)
-    console.log(date)
-    console.log(month)
-    console.log(year)
-    console.log(gender)
-    console.log(phone)
-    console.log(address)
-    console.log(username)
-    console.log(password)
-    console.log(confirmPassword)
-    console.log(email)
-  }
 
-  const createAccount = async() => {
-      // const response = await axios.post('http://',{
-      //       name : name,
-      //       lastname : lastname,
-      //       date : date,
-      //       month : month,
-      //       year : year,
-      //       gender : gender,
-      //       phone : phone,
-      //       address : address,
-      //       username : username,
-      //       password : password,
-      //       email : email 
-      // })
-      // if (response.status === 200 || response.status === 201) {
-      //   console.log(response.data)
-      //   backToLogin()
-      // } else if (response.status === 400){
-      //   console.log("fail register")
-      // }
+  const createAccount = async () => {
+    const response = await axios.post(`/api/v1/users/register`, {
+      fullname: name + " " + lastname,
+      sex: gender,
+      phone: phone,
+      address: address,
+      username: username,
+      password: password,
+      email: email,
+      birthdate: date + " " + month + " " + year
+    })
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          const msg = "Created Account! please login"
+          showToast('SUCCESS', msg)
+          setTimeout(() => {
+            navigate('/login')
+          }, 2000)
+        }
+      })
+      .catch((error) => {
+        const msg = "Something Wrong!"
+        showToast('ERROR', msg)
+      })
   }
 
   return (
@@ -66,36 +64,36 @@ export default function Register() {
       </div>
 
       <div class="flex flex-col w-screen">
-        <form class="flex flex-col rounded pt-6 pb-8 mb-4 sm:w-full place-items-center" onSubmit={createAccount}>
+        <div class="flex flex-col rounded pt-6 pb-8 mb-4 sm:w-full place-items-center" onSubmit={createAccount}>
           <div class="md:flex md:flex-row">
             {/* Name */}
 
-              <input
-                class="appearance-none outline outline-0  rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-3 flex place-items-start bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] md:mx-2 border-[#C505F5]"
-                id="Name"
-                type="text"
-                placeholder="Name"
-                onChange={(text) => {setName(text.target.value)}}
-                name="Name"
-                required
-                />
+            <input
+              class="appearance-none outline outline-0  rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-3 flex place-items-start bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] md:mx-2 border-[#C505F5]"
+              id="Name"
+              type="text"
+              placeholder="Name"
+              onChange={(text) => { setName(text.target.value) }}
+              name="Name"
+              required
+            />
 
             {/* Lastname */}
-              <input
-                class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-3 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] md:mx-2 border-[#C505F5]"
-                id="Lastname"
-                type="text"
-                placeholder="Lastname"
-                onChange={(text) => {setLastname(text.target.value)}}
-                required
-              ></input>
+            <input
+              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-3 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] md:mx-2 border-[#C505F5]"
+              id="Lastname"
+              type="text"
+              placeholder="Lastname"
+              onChange={(text) => { setLastname(text.target.value) }}
+              required
+            ></input>
           </div>
 
           <div class="flex flex-row">
             {/* Monthhhhhhhhhhhhhhhhhhh */}
             <div>
               <div class="relative flex w-full">
-                <select class="rounded-full text-gray-600 flex place-items-end bg-white px-1 gray-700 py-2 focus:outline-none focus:shadow-outline w-full mx-2 h-[37px] rounded-full mb-3 flex place-items-end bg-white shadow appearance-none border gray-100 py-0focus:outline-none focus:shadow-outline w-[130px] mx-2 border-[#C505F5]" onChange={(text) => {setMonth(text.target.value)}} required> 
+                <select class="rounded-full text-gray-600 flex place-items-end bg-white px-1 gray-700 py-2 focus:outline-none focus:shadow-outline w-full mx-2 h-[37px] rounded-full mb-3 flex place-items-end bg-white shadow appearance-none border gray-100 py-0focus:outline-none focus:shadow-outline w-[130px] mx-2 border-[#C505F5]" onChange={(text) => { setMonth(text.target.value) }} required>
                   <option value="January">January</option>
                   <option value="February">February</option>
                   <option value="March">March</option>
@@ -115,7 +113,7 @@ export default function Register() {
             {/* date*/}
             <div>
               <div class="relative flex w-full">
-                <select class="rounded-full text-gray-600 flex place-items-end bg-white px-1 gray-700 py-2 focus:outline-none focus:shadow-outline w-full mx-2 h-[37px] rounded-full mb-3 flex place-items-end bg-white shadow appearance-none border gray-100 py-0focus:outline-none focus:shadow-outline w-[100px] mx-2 border-[#C505F5]" onChange={(text) => {setDate(text.target.value)}} required>
+                <select class="rounded-full text-gray-600 flex place-items-end bg-white px-1 gray-700 py-2 focus:outline-none focus:shadow-outline w-full mx-2 h-[37px] rounded-full mb-3 flex place-items-end bg-white shadow appearance-none border gray-100 py-0focus:outline-none focus:shadow-outline w-[100px] mx-2 border-[#C505F5]" onChange={(text) => { setDate(text.target.value) }} required>
                   <option value="่1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -153,24 +151,24 @@ export default function Register() {
 
             {/* Year */}
             <div class="relative flex w-full mx-2">
-            <div class="rounded-full mb-3 flex place-items-end bg-white shadow appearance-none border gray-100 px-3 py-0focus:outline-none focus:shadow-outline w-[100px] border-[#C505F5]">
-              <input
-                class="appearance-none rounded w-full text-gray-700 py-2 px-1 leading-tight focus:outline-none focus:shadow-outline"
-                id="Year"
-                type="int"
-                placeholder="Year"
-                onChange={(text) => {setYear(text.target.value)}}
-                required
-              ></input>
-            </div>
+              <div class="rounded-full mb-3 flex place-items-end bg-white shadow appearance-none border gray-100 px-3 py-0focus:outline-none focus:shadow-outline w-[100px] border-[#C505F5]">
+                <input
+                  class="appearance-none rounded w-full text-gray-700 py-2 px-1 leading-tight focus:outline-none focus:shadow-outline"
+                  id="Year"
+                  type="int"
+                  placeholder="Year"
+                  onChange={(text) => { setYear(text.target.value) }}
+                  required
+                ></input>
+              </div>
             </div>
           </div>
-        
+
 
           {/* Gender */}
           <div class="w-[300px]">
             <div class="relative flex w-full ">
-              <select className="rounded-full text-gray-600 flex place-items-end bg-white gray-700 px-1 py-2 focus:outline-none focus:shadow-outline h-[37px] w-[300px] rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]" onChange={(text) => {setGender(text.target.value)}} required>
+              <select className="rounded-full text-gray-600 flex place-items-end bg-white gray-700 px-1 py-2 focus:outline-none focus:shadow-outline h-[37px] w-[300px] rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]" onChange={(text) => { setGender(text.target.value) }} required>
                 <option value="male" >Male</option>
                 <option value="female" >Female</option>
                 <option value="other" >Other</option>
@@ -179,88 +177,88 @@ export default function Register() {
           </div>
 
           {/* Phone */}
-            <input
-              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
-              id="Phone"
-              type="text"
-              placeholder="Phone"
-              onChange={(text) => {setPhone(text.target.value)}}
-              required
-            ></input>
+          <input
+            class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
+            id="Phone"
+            type="text"
+            placeholder="Phone"
+            onChange={(text) => { setPhone(text.target.value) }}
+            required
+          ></input>
 
           {/* Address */}
-            <input
-              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
-              id="Address"
-              type="text"
-              placeholder="Address"
-              onChange={(text) => {setAddress(text.target.value)}}
-              required
-            ></input>
+          <input
+            class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
+            id="Address"
+            type="text"
+            placeholder="Address"
+            onChange={(text) => { setAddress(text.target.value) }}
+            required
+          ></input>
 
           {/* Username */}
-            <input
-              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
-              id="Username"
-              type="text"
-              placeholder="Username"
-              onChange={(text) => {setUsername(text.target.value)}}
-              required
-            ></input>
+          <input
+            class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
+            id="Username"
+            type="text"
+            placeholder="Username"
+            onChange={(text) => { setUsername(text.target.value) }}
+            required
+          ></input>
 
           {/*Password */}
-            <input
-              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
-              id="Password"
-              type="password"
-              placeholder="Password"
-              onChange={(text) => {setPassword(text.target.value)}}
-              required
-            ></input>
+          <input
+            class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
+            id="Password"
+            type="password"
+            placeholder="Password"
+            onChange={(text) => { setPassword(text.target.value) }}
+            required
+          ></input>
 
           {/*Confirm Password */}
-            <input
-              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
-              id="Password"
-              type="password"
-              placeholder="Confirm Password"
-              onChange={(text) => {setConfirmPassword(text.target.value)}}
-              required      
-            ></input>  
+          <input
+            class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
+            id="Password"
+            type="password"
+            placeholder="Confirm Password"
+            onChange={(text) => { setConfirmPassword(text.target.value) }}
+            required
+          ></input>
           <div>{password != confirmPassword ? <h1 class="text-[red]">Password and Confirm Password does not match.</h1> : null}</div>
 
           {/* Email */}
-            <input
-              class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mt-4 mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
-              id="Email"
-              type="email"
-              placeholder="Email"
-              onChange={(text) => {setEmail(text.target.value)}}
-              required
-            ></input>
+          <input
+            class="appearance-none rounded w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:shadow-outline rounded-full mt-4 mb-4 flex place-items-end bg-white shadow appearance-none border px-3 focus:outline-none focus:shadow-outline w-[300px] border-[#C505F5]"
+            id="Email"
+            type="email"
+            placeholder="Email"
+            onChange={(text) => { setEmail(text.target.value) }}
+            required
+          ></input>
 
           {/* confirm and cancel */}
           <div class="flex flex-row items-center ">
             <button
               class="mr-2 bg-red-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-red-600 duration-300 text-white font-bold py-2 px-10 rounded rounded-lg"
               type="button"
-              onClick={()=>{backToLogin()}}
+              onClick={() => navigate('/login')}
             >
               cancel
             </button>
-            
+
             <button
               class="ml-2 bg-blue-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-blue-600 duration-300 text-white font-bold py-2 px-10 rounded rounded-lg"
-              type="submit"
+              onClick={() => createAccount()}
             >
               confirm
             </button>
           </div>
 
 
-        </form> 
+        </div>
 
-        
+
 
       </div>
     </div>

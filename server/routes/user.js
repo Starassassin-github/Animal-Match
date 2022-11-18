@@ -85,15 +85,14 @@ router.post('/login', async (req, res) => {
 router.post(`/register`, async (req, res) => {
 
     let user = new User({
-        name: req.body.name,
+        username: req.body.username,
+        fullname: req.body.fullname,
         email: req.body.email,
         password: req.body.password,
         address: req.body.address,
-        city: req.body.city,
         image: req.body.image,
         phone: req.body.phone,
         sex: req.body.sex,
-        id_card: req.body.id_card,
         birthdate: req.body.birthdate,
     })
 

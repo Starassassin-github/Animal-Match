@@ -30,7 +30,7 @@ const userSchema = mongoose.Schema({
         required:true,
         trim:true,
     },
-    city: {
+    address: {
         type:String,
         maxLength:150,
         trim:true
@@ -40,6 +40,12 @@ const userSchema = mongoose.Schema({
     },
     image: {
         type:String
+    },
+    birthdate: {
+        type: String
+    },
+    sex: {
+        type: String
     },
     post: [{
         type: mongoose.Schema.Types.ObjectId,
