@@ -25,7 +25,7 @@ export default function ReadPost() {
 
         if (effectRan.current === false) {
 
-            const url = `${process.env.REACT_APP_URL}/api/v1/users/favorites/${params.id}`;
+            const url = `/api/v1/users/favorites/${params.id}`;
 
             const fetchPost = async () => {
                 try {
@@ -33,7 +33,7 @@ export default function ReadPost() {
                     if (response.status === 200 || response.status === 201) {
                         for (let index = 0; index < response.data.length; index++) {
                             const element = response.data[index];
-                            let resdata = await axios.get(`${process.env.REACT_APP_URL}/api/v1/posts/${element}`)
+                            let resdata = await axios.get(`/api/v1/posts/${element}`)
                             setArrayPostsData(arrayPostsData => [...arrayPostsData, resdata.data])
                         }
                     }

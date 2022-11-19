@@ -31,7 +31,7 @@ export default function UserAccount() {
 
     if (effectRan.current === false) {
 
-      const url = `${process.env.REACT_APP_URL}/api/v1/users/${params.id}`;
+      const url = `/api/v1/users/${params.id}`;
 
       const fetchPost = async () => {
         try {

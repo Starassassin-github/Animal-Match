@@ -24,7 +24,7 @@ export const PostCard = (props) => {
 
   const handleOffer = async () => {
 
-    let favoritePost = await axios.patch(`${process.env.REACT_APP_URL}/api/v1/users/favorites/${context.stateUser.user.userId}/${props._id}`)
+    let favoritePost = await axios.patch(`/api/v1/users/favorites/${context.stateUser.user.userId}/${props._id}`)
       .then((res) => {
         if (res.status == 200 || res.status == 201) {
           const msg = "Liked"
@@ -43,7 +43,7 @@ export const PostCard = (props) => {
 
   const handleReject = async () => {
 
-    let discardedPost = await axios.patch(`${process.env.REACT_APP_URL}/api/v1/users/discardeds/${context.stateUser.user.userId}/${props._id}`)
+    let discardedPost = await axios.patch(`/api/v1/users/discardeds/${context.stateUser.user.userId}/${props._id}`)
       .then((res) => {
         if (res.status == 200 || res.status == 201) {
           const msg = "No another one"

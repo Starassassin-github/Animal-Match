@@ -7,7 +7,7 @@ import { removeTokenCookie, showToast } from '../../utils/tools';
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 
 export const loginUser = (user, dispatch) => {
-    fetch(`${process.env.REACT_APP_URL}/api/v1/users/login`, {
+    fetch(`/api/v1/users/login`, {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -34,7 +34,7 @@ export const loginUser = (user, dispatch) => {
 };
 
 export const getUserProfile = (id) => {
-    fetch(`${process.env.REACT_APP_URL}/api/v1/users/${id}`, {
+    fetch(`/api/v1/users/${id}`, {
         method: "GET",
         headers: {
             Accept: "application/json",

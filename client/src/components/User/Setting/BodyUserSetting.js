@@ -66,7 +66,7 @@ export default function BodyUserSetting() {
 
 
       const editHandlerUser = async () => {
-        await axios.put(`${process.env.REACT_APP_URL}/api/v1/users/${idAuth}`, formData, configHeaders)
+        await axios.put(`/api/v1/users/${idAuth}`, formData, configHeaders)
           .then((res) => {
             if (res.status === 200 || res.status === 201) {
               const msg = "Profile Updated!"
@@ -91,7 +91,7 @@ export default function BodyUserSetting() {
 
     if (effectRan.current === false) {
 
-      const url = `${process.env.REACT_APP_URL}/api/v1/users/${params.id}`;
+      const url = `/api/v1/users/${params.id}`;
 
       const fetchPost = async () => {
         try {
