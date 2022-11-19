@@ -45,7 +45,6 @@ export default function DisplayPost() {
                         setTypeDisplayPost(response.data.animal_type)
                         setLocationDisplayPost(response.data.location)
                         setImages(response.data.images)
-                        console.log(response.data);
                     }
 
                 } catch (error) {

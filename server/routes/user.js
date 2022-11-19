@@ -63,7 +63,7 @@ router.get(`/favorites/:id`, async (req, res) => {
     if (!user) {
         res.status(500).json({ success: false })
     }
-    res.status(200).send(user);
+    res.status(200).send(user.favorites);
 });
 
 router.post('/login', async (req, res) => {

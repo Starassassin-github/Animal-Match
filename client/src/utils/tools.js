@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import cookie from 'react-cookies';
+import { useNavigate } from 'react-router-dom';
 import Animal_MatchLogo from '../images/Animal_MatchLogo.png';
-import ImageTestpost from '../images/ImageTestPost.jpg';
 import aniloading from '../images/ani-loading.svg';
 import 'react-slideshow-image/dist/styles.css'
 import { Slide } from 'react-slideshow-image';
@@ -17,13 +17,15 @@ import {
 
 export const PostCard = (props) => {
 
+    let navigate = useNavigate();
 
     const item = props.item
 
+
     return (
-        <Card onClick={() => alert("Hello!")} className="w-96 mb-3 cursor-pointer">
+        <Card onClick={() => navigate(`/posts/${item._id}`)} className="w-96 mb-3 cursor-pointer">
             <CardHeader floated={false} className="h-80">
-                <img src={ImageTestpost} alt="" />
+                <img src={item.image} alt="" />
             </CardHeader>
             <CardBody className="text-center">
                 <Typography variant="h4" color="blue-gray" className="mb-2">
