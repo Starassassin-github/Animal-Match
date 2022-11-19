@@ -8,6 +8,7 @@
     "server": "nodemon server/server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build":"npm install --prefix client && npm run build --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,6 +16,9 @@
     "url": "git+https://github.com/Starassassin-github/Animal-Match.git"
   },
   "author": "",
+  "engines": {
+    "node": "16.x"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Starassassin-github/Animal-Match/issues"
