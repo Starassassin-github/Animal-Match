@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import axios from "axios";
 
+
 // Toast
 import { showToast } from "../../utils/tools";
 
@@ -27,7 +28,7 @@ export default function Register() {
 
   const createAccount = async () => {
 
-    const response = await axios.post(`/api/v1/users/register`, {
+    const response = await axios.post(`${process.env.REACT_APP_URL}/api/v1/users/register`, {
       fullname: name + " " + lastname,
       sex: gender,
       phone: phone,

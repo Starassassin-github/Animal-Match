@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 
 // Toast
 import { ToastContainer } from 'react-toastify';

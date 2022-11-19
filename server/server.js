@@ -52,7 +52,6 @@ passport.use('jwt', jwtStrategy);
 
 // router
 app.use(`${api}/posts`, postsRouter);
-
 app.use(`${api}/users`, usersRouter);
 
 

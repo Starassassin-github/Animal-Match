@@ -36,14 +36,14 @@ export default function Homepage() {
 
     if (effectRan.current === false) {
 
-      const url = `/api/v1/posts/main/${context.stateUser.user.userId}`;
+      const url = `${process.env.REACT_APP_URL}/api/v1/posts/main/${context.stateUser.user.userId}`;
 
       const fetchWorkStatus = async () => {
         try {
           const response = await axios.get(url);
           if (response.status === 200 || response.status === 201) {
             await handleAddPost(response).then((res) => {
-               axios.get(`/api/v1/posts/${res}`).then((res)=>{
+               axios.get(`${process.env.REACT_APP_URL}/api/v1/posts/${res}`).then((res)=>{
                 setImages(res.data.images)
                 setPostId(res.data._id)
                })

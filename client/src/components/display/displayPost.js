@@ -35,7 +35,7 @@ export default function DisplayPost() {
 
         if (effectRan.current === false) {
 
-            const url = `/api/v1/posts/${params.id}`;
+            const url = `${process.env.REACT_APP_URL}/api/v1/posts/${params.id}`;
 
             const fetchPost = async () => {
                 try {
