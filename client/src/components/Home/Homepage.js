@@ -1,14 +1,22 @@
+// import
 import React, { useEffect, useContext, useState, useRef } from 'react';
 import axios from 'axios';
 
+// Component
 import Hamburger from '../hamburger/hamburger';
 import MenubarDesktop from './menubarDesktop';
 import PageBody from './pageBody';
 
+// Context
+import AuthGlobal from '../../Context/store/AuthGlobal';
+
+// Toast
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Homepage() {
+
+  const context = useContext(AuthGlobal)
 
   const effectRan = useRef(false);
 
@@ -27,7 +35,7 @@ export default function Homepage() {
 
     if (effectRan.current === false) {
 
-      const url = `/api/v1/posts/main/63720b7c2a5cd2b1347d16e9`;
+      const url = `/api/v1/posts/main/${context.stateUser.user.userId}`;
 
       const fetchWorkStatus = async () => {
         try {

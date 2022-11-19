@@ -1,10 +1,12 @@
+// import
 import React, { useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
+// Toast
 import { showToast } from "../../utils/tools";
 
+// Component
 import 'react-slideshow-image/dist/styles.css'
 import { Slide } from 'react-slideshow-image';
 import LikePostButton from '../../images/LikePostButton.png';
