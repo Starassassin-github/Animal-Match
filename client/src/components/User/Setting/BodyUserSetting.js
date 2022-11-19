@@ -130,22 +130,6 @@ export default function BodyUserSetting() {
               :
               <img src={profileUser} alt="profileUser" className="w-[230px] h-[230px] sm:border-[#C999C7] border-solid border-8 border-[#ffffff] rounded-full ml-[40px] sm:h-[300px] sm:w-[300px]" />
           }
-          <div>
-            <input
-              size="60"
-              className="text-sm text-grey-500
-                                    file:mr-5 file:py-3 file:px-10
-                                    file:rounded-full file:border-0
-                                    file:text-md file:font-semibold  file:text-white
-                                    file:bg-gradient-to-r file:from-blue-600 file:to-amber-600
-                                    hover:file:cursor-pointer hover:file:opacity-80 p-2 border-solid border-4 border-blue-500 rounded-lg"
-              onChange={(e) => {
-                setProfileUser(URL.createObjectURL(e.target.files[0]))
-                setImage(e.target.files[0])
-              }}
-              type="file"
-            />
-          </div>
         </div>
       </div>
 
@@ -204,7 +188,24 @@ export default function BodyUserSetting() {
           />
         </div>
 
-
+        <div>
+            <input
+              size="60"
+              className="mt-20 mx-auto my-auto text-sm text-grey-500 
+                                    file:mr-5 file:py-3 file:px-10
+                                    file:rounded-full file:border-0
+                                    file:text-md file:font-semibold  file:text-white
+                                    file:bg-gradient-to-r file:from-blue-600 file:to-amber-600
+                                    hover:file:cursor-pointer hover:file:opacity-80 p-2 border-solid border-4 border-blue-500 rounded-lg
+                                    sm:flex sm:flex-col
+                      "
+              onChange={(e) => {
+                setProfileUser(URL.createObjectURL(e.target.files[0]))
+                setImage(e.target.files[0])
+              }}
+              type="file"
+            />
+          </div>
 
       </div>
     </div>

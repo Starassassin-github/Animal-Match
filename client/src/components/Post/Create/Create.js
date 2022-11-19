@@ -7,9 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // Component
 import Hamburger from "../../hamburger/hamburger";
+import MenubarDesktop from "../../Home/menubarDesktop";
 import CreatePost from "./CreatePost";
-
-
 
 
 function Create() {
@@ -25,8 +24,9 @@ function Create() {
         </div>
       </div>
       <div>
-        <CreatePost />
+        <CreatePost /> 
       </div>
+      <div><MenubarDesktop /></div>
       <ToastContainer />
     </div>
   );
