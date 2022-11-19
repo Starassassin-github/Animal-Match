@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
         if (isValid) {
             uploadError = null;
         }
-        cb(uploadError, 'public/uploads');
+        cb(uploadError, 'server/public/uploads');
     },
     filename: function (req, file, cb) {
         const fileName = file.originalname.split(' ').join('-');
@@ -132,16 +132,11 @@ router.put('/:id', uploadOptions.single('image'), async (req, res) => {
     const user = await User.findByIdAndUpdate(
         req.params.id,
         {
-            name: req.body.name,
+            fullname: req.body.fullname,
             email: req.body.email,
-            password: req.body.password,
             address: req.body.address,
-            city: req.body.city,
             image: imagepath,
             phone: req.body.phone,
-            sex: req.body.sex,
-            id_card: req.body.id_card,
-            birthdate: req.body.birthdate,
         },
         { new: true }
     )

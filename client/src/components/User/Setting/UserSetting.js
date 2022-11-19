@@ -1,17 +1,35 @@
-import HeadUserSetting from './HeadUserSetting';
-import profileUserTest from '../../../images/profileUserTest.jpg';
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+// Toast
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+// Context
+import AuthGlobal from "../../../Context/store/AuthGlobal";
+
+
+// helper
+import {  showToast } from "../../../utils/tools";
+
+
 import BodyUserSetting from './BodyUserSetting';
+import MenubarDesktop from "../../Home/menubarDesktop";
+import Hamburger from "../../hamburger/hamburger";
+
+
 export default function UserSetting() {
   
     return (
       <div  className='flex flex-col h-full w-full relative min-h-full\  text-center bg-[#EFE3C0]' >
           
-          <div> <HeadUserSetting /></div>
+          <Hamburger />
           
-          <div className="bg-[#FEE39F] h-[120px] sm:h-[70px] sm:bg-gradient-to-r from-[#D3B3E4] to-[#E4B3E2] flex">
-              <img src={profileUserTest} alt="profileUserTest" className="w-[230px] h-[230px] sm:border-[#C999C7] border-solid border-8 border-[#ffffff] rounded-full ml-[40px] sm:h-[300px] sm:w-[300px]" />
-          </div>
-          <div className="mt-[110px] bg-[#EFE3C0] sm:mt-[230px]"><BodyUserSetting/></div>
+          
+          <div ><BodyUserSetting /></div>
+          <div className="mt-[40px]"><MenubarDesktop /></div>
+          <ToastContainer />
       </div>
     );
   }

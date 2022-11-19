@@ -1,26 +1,24 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-// Context
-import AuthGlobal from "../../../Context/store/AuthGlobal";
-
+// Toast
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // helper
-import { ImageCart, showToast } from "../../../utils/tools";
+import {  showToast } from "../../../utils/tools";
 
 
 
-import HeadUserAccount from "./HeadUserAcount";
 import profileUserTest from '../../../images/profileUserTest.jpg';
 import BodyUserAccount from "./BodyUserAccount";
 import MenubarDesktop from "../../Home/menubarDesktop";
+import Hamburger from "../../hamburger/hamburger";
 
 
 
-export default function UserAccount(props) {
-
-  // const id = `63720b7c2a5cd2b1347d16e9`
+export default function UserAccount() {
 
   let params = useParams();
 
@@ -61,7 +59,7 @@ export default function UserAccount(props) {
   return (
     <div className='flex flex-col h-full w-full relative min-h-full\  text-center'>
 
-      <div> <HeadUserAccount /></div>
+      <Hamburger />
 
       <div className="bg-[#EBC8F1] h-[120px] sm:h-[70px] sm:bg-gradient-to-r from-[#98C3FF] to-[#ffffff] flex">
         {
@@ -73,6 +71,7 @@ export default function UserAccount(props) {
       </div>
       <div className="mt-[110px]"><BodyUserAccount item={itemData} /></div>
       <div className="mt-[40px]"><MenubarDesktop /></div>
+      <ToastContainer />
     </div>
   );
 }
