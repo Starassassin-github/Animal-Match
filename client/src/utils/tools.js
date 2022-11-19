@@ -12,9 +12,7 @@ import {
     CardBody,
     CardFooter,
     Typography,
-    Tooltip,
     Button,
-    IconButton
 } from "@material-tailwind/react";
 
 export const PostCard = (props) => {
@@ -44,7 +42,7 @@ export const PostCard = (props) => {
 
 export const ButtonMUI = () => {
     return <Button>Button</Button>;
-  }
+}
 
 
 export const Loader = () => {
@@ -92,41 +90,40 @@ export const getAuthHeader = () => {
     return { headers: { 'Authorization': `Bearer ${getTokenCookie()}` } }
 }
 
-export const ImageCart = () => {
-    const slideImages = [
-        {
-          url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKr5wT7rfkjkGvNeqgXjBmarC5ZNoZs-H2uMpML8O7Q4F9W-IlUQibBT6IPqyvX45NOgw&usqp=CAU',
-          caption: 'Slide 1'
-        },
-        {
-          url: 'https://res.cloudinary.com/jerrick/image/upload/v1668106965/636d4ad570b2ec001cba5201.jpg',
-          caption: 'Slide 2'
-        },
-        {
-          url: 'https://media.wired.com/photos/5cdefb92b86e041493d389df/2:1/w_1500,h_750,c_limit/Culture-Grumpy-Cat-487386121.jpg',
-          caption: 'Slide 3'
-        },
-      ];
+export const ImageCart = (props) => {
 
-      const Slideshow = () => {
+    const slideImages = []
+    const imagesProps = props.images
+
+    imagesProps.forEach((element, index) => {
+        slideImages.push({ url: element, caption: `Slide ${index + 1}` })
+    });
+
+    const Slideshow = () => {
         return (
-          <div className="slide-container bg-[#eedcf1] w-[390px] h-[440px] sm:w-[550px] sm:h-[580px] lg:w-[490px] lg:h-[520px] rounded-r-2xl rounded-l-2xl border-8 border-[#F8FFAF]">
-            <Slide className=" ">
-             {slideImages.map((slideImage, index)=> (
-                <div className="each-slide" key={index}>
-                  <div>
-                  <img src={slideImage.url} alt="" className="w-[390px] h-[420px]  sm:w-[550px] sm:h-[560px] lg:w-[490px] lg:h-[500px] rounded-r-2xl rounded-l-2xl" />
-    
-                  </div>
-                </div>
-              ))} 
-            </Slide>
-          </div>
+            <div className="slide-container bg-[#eedcf1] w-[390px] h-[440px] sm:w-[550px] sm:h-[580px] lg:w-[490px] lg:h-[520px] rounded-r-2xl rounded-l-2xl border-8 border-[#F8FFAF]">
+                {
+                    slideImages.length > 0 ?
+                        <Slide className=" ">
+                            {slideImages.map((slideImage, index) => (
+                                <div className="each-slide" key={index}>
+                                    <div>
+                                        <img src={slideImage.url} alt="" className="w-[390px] h-[420px]  sm:w-[550px] sm:h-[560px] lg:w-[490px] lg:h-[500px] rounded-r-2xl rounded-l-2xl" />
+
+                                    </div>
+                                </div>
+                            ))}
+                        </Slide>
+                        :
+                        null
+                }
+
+            </div>
         )
     }
 
     return (
-        Slideshow()      
+        Slideshow()
     );
 }
 

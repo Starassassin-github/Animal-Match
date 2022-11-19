@@ -13,6 +13,7 @@ import AuthGlobal from '../../Context/store/AuthGlobal';
 // Toast
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { showToast } from '../../utils/tools';
 
 export default function Homepage() {
 
@@ -40,7 +41,7 @@ export default function Homepage() {
       const fetchWorkStatus = async () => {
         try {
           const response = await axios.get(url);
-          if (response.status === 200) {
+          if (response.status === 200 || response.status === 201) {
             await handleAddPost(response).then((res) => {
                axios.get(`/api/v1/posts/${res}`).then((res)=>{
                 setImages(res.data.images)
@@ -51,7 +52,8 @@ export default function Homepage() {
           }
 
         } catch (error) {
-          console.log(error);
+          const msg = "Something Wrong! Pleases try again"
+          showToast('ERROR', msg)
         }
       };
 

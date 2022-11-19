@@ -15,6 +15,7 @@ import Homepage from "./components/Home/Homepage";
 import DisplayPost from "./components/display/displayPost";
 import UserAccount from "./components/User/Account/UserAccount";
 import UserSetting from "./components/User/Setting/UserSetting";
+import DisplayPostComponent from "./components/display/DisplayPostComponent";
 
 
 function MyRoute() {
@@ -27,7 +28,7 @@ function MyRoute() {
         <Route element={<PrivateRoutes/>}>
           <Route path='/' element={<Homepage/>}/>
           <Route path='create' element={<Create/>}/>
-          <Route path='posts/:id' element={<DisplayPost/>}/>
+          <Route path='posts/:id' element={<DisplayPostComponent/>}/>
           <Route path='users/favorites/:id' element={<DisplayPost/>}/>
           <Route path='users/profile/:id' element={<UserAccount/>}/>
           <Route path='users/profile/setting/:id' element={<UserSetting/>}/>
