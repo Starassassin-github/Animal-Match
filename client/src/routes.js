@@ -1,5 +1,5 @@
 // import
-import React, { useContext } from "react";
+import React from "react";
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 // Toast
@@ -15,6 +15,7 @@ import UserAccount from "./components/User/Account/UserAccount";
 import UserSetting from "./components/User/Setting/UserSetting";
 import DisplayPostComponent from "./components/display/DisplayPostComponent";
 import FavoritePostComponent from "./components/Post/Read/FavoritePostComponet";
+import { Loader } from "./utils/tools";
 
 
 function MyRoute() {
@@ -34,6 +35,12 @@ function MyRoute() {
         </Route>
         <Route path='/login' element={<LoginComponent/>} />
         <Route path='/register' element={<RegisterComponent/>} />
+        <Route 
+          path="*"
+          element={
+            <Loader />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -1,8 +1,11 @@
 // import
-import { useState, useRef, useEffect } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom'
 import { useFormik, FieldArray, FormikProvider } from "formik";
 import axios from 'axios';
+
+// Context
+import AuthGlobal from "../../../Context/store/AuthGlobal";
 
 // helper
 import { validation, formValues } from './validationSchema';
@@ -16,6 +19,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
+
 
 
 const CssTextField = styled(TextField)({
@@ -39,6 +43,9 @@ const CssTextField = styled(TextField)({
 });
 
 export default function CreatePost() {
+
+    const context = useContext(AuthGlobal);
+    const idAuth = context.stateUser.user.userId
 
     let navigate = useNavigate()
 
@@ -68,6 +75,7 @@ export default function CreatePost() {
                 formData.append("animal_type", values.type)
                 formData.append("age", values.age)
                 formData.append("rich_description", values.rich_description)
+                formData.append("user_who_post", idAuth)
 
                 const postHandler = async () => {
                     let post = await axios.post(`/api/v1/posts/`, formData, configHeaders).then(result => {
@@ -77,7 +85,7 @@ export default function CreatePost() {
                             navigate("/")
                         }, 2500)
 
-                        
+
                     }).catch(err => {
                         const msg = "Something Wrong!"
                         showToast('ERROR', msg)
@@ -215,7 +223,7 @@ export default function CreatePost() {
                                         )
                                     })
                                 }
-                                
+
                             </div>
 
                             <div>
@@ -238,7 +246,7 @@ export default function CreatePost() {
 
                         </div>
 
-                        <div className="mt-8">
+                        <div className="mt-20 pb-28">
                             <button
                                 className="transition ease-in-out delay-150 bg-pink-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300  text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
                                 variant='contained'

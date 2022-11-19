@@ -1,6 +1,6 @@
 // import
 import React, { useState, useRef, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 // Context
@@ -11,8 +11,10 @@ import { ImageCart, showToast } from "../../utils/tools";
 
 
 export default function DisplayPost() {
-
+    
     let params = useParams();
+
+    let navigate = useNavigate();
 
     const context = useContext(AuthGlobal)
 
@@ -26,6 +28,7 @@ export default function DisplayPost() {
     const [richDescriptionDisplayPost, setRichDescriptionDisplayPost] = useState("")
     const [typeDisplayPost, setTypeDisplayPost] = useState("")
     const [locationDisplayPost, setLocationDisplayPost] = useState("")
+    const [user_who_post, set_User_Who_Post] = useState("")
     const [images, setImages] = useState([]);
 
     useEffect(() => {
@@ -45,6 +48,7 @@ export default function DisplayPost() {
                         setTypeDisplayPost(response.data.animal_type)
                         setLocationDisplayPost(response.data.location)
                         setImages(response.data.images)
+                        set_User_Who_Post(response.data.user_who_post)
                     }
 
                 } catch (error) {
@@ -122,9 +126,22 @@ export default function DisplayPost() {
             <div name="desktop">
                 <span class="hidden lg:block">
                     <div className="flex flex-nowrap text-center bg-[#EBC8F1] ">
-                        <div className="h-screen w-screen bg-[#EBC8F1] mt-[100px] ">
+                        <div className="h-screen w-screen bg-[#EBC8F1] my-[50px] ">
                             <div className="bg-[#EBC8F1] ml-[65px] flex">
-                                <ImageCart images={images} />
+                                <div className="flex flex-col">
+                                    <ImageCart images={images} />
+                                    <div className="mt-10" >
+                                        <button 
+                                            class="relative mx-auto my-auto inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-yellow-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400"
+                                            onClick={() => navigate(`/users/profile/${user_who_post}`)}    
+                                        >
+                                            <span class="relative mx-auto my-auto px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                                                Contact for information
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+
 
                                 <div>
                                     <div className="ml-[40px] mr-[40px] bg-[#fff] mt-[30px] font-[700] flex rounded-2xl border-2 border-[#EDFF35]">
@@ -155,10 +172,16 @@ export default function DisplayPost() {
                                     <div className="ml-[60px]  mt-[15px] mb-[30px] bg-[#F8D4F3] border-2 flex border-[#d487ca] ">
                                         <h1 className="text-[20px] text-left sm:text-[30px] text-[#6844E3]">&nbsp;  : {locationDisplayPost}</h1>
                                     </div>
-                                </div></div></div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+
                 </span>
+
             </div>
+
         </div>
     );
 
