@@ -34,13 +34,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
 
-mongoose.connect(mongoUri)
-.then(() => {
-    console.log('Database Connection is ready');
-})
-.catch((err) => {
-    console.log(err);
-});
+// mongoose.connect(mongoUri)
+//     .then(() => {
+//         console.log('Database Connection is ready');
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
 
 // SANITIZE
 app.use(xss());
@@ -58,10 +58,10 @@ app.use(`${api}/users`, usersRouter);
 
 
 /// error handling
-app.use(convertToApiError)
-app.use((err,req,res,next)=>{
-    handleError(err,res)
-})
+// app.use(convertToApiError)
+// app.use((err,req,res,next)=>{
+//     handleError(err,res)
+// })
 
 // app.use(express.static('client/build'));
 // if(process.env.NODE_ENV === 'production'){
@@ -72,7 +72,18 @@ app.use((err,req,res,next)=>{
 //     })
 // }
 
-const port =  3341;
-app.listen(port, () => {
-    console.log(`Server runnig on port ${port}`);
-});
+function connectToDatabase() {
+    // return connection property from mongoose.connect call
+    return mongoose.connect(mongoUri).connection;
+}
+connectToDatabase()
+    .on('error', console.error.bind(console))
+    // reconnect
+    .on('disconnected', connectToDatabase)
+    // we use once because we don't want to add new listener after disconnected
+    .once('open', () => app.listen(port));
+
+const port = 3341;
+// app.listen(port, () => {
+//     console.log(`Server runnig on port ${port}`);
+// });
