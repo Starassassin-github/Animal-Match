@@ -3,6 +3,8 @@ const app = express();
 const cors = require('cors');
 var path = require('path');
 
+const port = process.env.PORT || 3341;
+
 require('dotenv/config');
 app.use(cors());
 app.options('*', cors())
@@ -72,18 +74,28 @@ app.use(`${api}/users`, usersRouter);
 //     })
 // }
 
-function connectToDatabase() {
-    // return connection property from mongoose.connect call
-    return mongoose.connect(mongoUri).connection;
-}
-connectToDatabase()
-    .on('error', console.error.bind(console))
-    // reconnect
-    .on('disconnected', connectToDatabase)
-    // we use once because we don't want to add new listener after disconnected
-    .once('open', () => app.listen(port));
 
-const port = 3341;
+connect();
+
+function listen() {
+  if (app.get('env') === 'test') return;
+  app.listen(port);
+  console.log('Express app started on port ' + port);
+}
+
+function connect() {
+  mongoose.connection
+    .on('error', console.log)
+    .on('disconnected', connect)
+    .once('open', listen);
+  return mongoose.connect(mongoUri, {
+    keepAlive: 1,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+}
+
+
 // app.listen(port, () => {
 //     console.log(`Server runnig on port ${port}`);
 // });
