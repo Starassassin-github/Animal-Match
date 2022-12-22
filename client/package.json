@@ -40,7 +40,6 @@
       "react-app/jest"
     ]
   },
-  "proxy": "https://animal-match-api.onrender.com",
   "browserslist": {
     "production": [
       ">0.2%",
